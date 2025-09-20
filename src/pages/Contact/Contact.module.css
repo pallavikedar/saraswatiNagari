@@ -1,0 +1,241 @@
+.contactPage {
+  font-family: "Poppins", sans-serif;
+  color: #222;
+  background: #fff;
+}
+
+/* Banner */
+.banner {
+  background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
+              url("../../assets/banner.jpg") center/cover no-repeat;
+  color: #fff;
+  text-align: center;
+  padding: 80px 20px;
+  position: relative;
+}
+.bannerContent h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+  color: #d5b223; /* Golden text */
+}
+.breadcrumbs {
+  font-size: 16px;
+}
+.breadcrumbs a {
+  color: #d5b223;
+  text-decoration: none;
+}
+.breadcrumbs span {
+  margin: 0 5px;
+  color: #d5b223;
+}
+
+/* Map */
+.mapContainer {
+  margin: 40px 0;
+}
+
+/* Form Section */
+.formSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 60px 10%;
+  flex-wrap: wrap;
+  background: #fff;
+  border-top: 1px solid #eee;
+}
+
+/* Left image */
+.contactImage {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 15px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.contactImage:hover {
+  transform: scale(1.03);
+}
+
+/* Right form section */
+.right {
+  flex: 1;
+  min-width: 320px;
+}
+.right h2 {
+  font-size: 30px;
+  margin-bottom: 12px;
+  color: #d4af37; /* Gold Heading */
+  font-weight: 600;
+}
+.subtext {
+  font-size: 15px;
+  margin-bottom: 25px;
+  color: #555;
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.form input,
+.form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background: #fff;
+}
+.form input:focus,
+.form textarea:focus {
+  border-color: #d4af37;
+  box-shadow: 0 0 8px rgba(212,175,55,0.3);
+}
+
+/* Submit button */
+.form button {
+  padding: 14px 28px;
+  background: #d4af37;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+}
+.form button:hover {
+  background: #bfa233;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .formSection {
+    padding: 40px 5%;
+    gap: 30px;
+  }
+  .right h2 {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 768px) {
+  .formSection {
+    flex-direction: column;
+    text-align: center;
+  }
+  .right {
+    width: 100%;
+  }
+  .form button {
+    align-self: center;
+  }
+  .subtext {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .formSection {
+    padding: 30px 20px;
+  }
+  .contactImage {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+  .form input,
+  .form textarea {
+    font-size: 14px;
+    padding: 12px;
+    width: 80%;
+  }
+  .form button {
+    width: 80%;
+    padding: 14px;
+  }
+}
+
+
+/* Contact Info */
+.contactInfoSection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  padding: 60px 10%;
+  background: #fafafa;
+}
+.infoBox {
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: 0.3s;
+  border-top: 4px solid #d4af37;
+}
+.infoBox:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+.icon {
+  font-size: 40px;
+  color: #d4af37;
+  margin-bottom: 15px;
+}
+.infoBox h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #222;
+}
+.infoBox p {
+  font-size: 15px;
+  color: #555;
+}
+
+/* FAQ Section */
+.faqSection {
+  padding: 60px 10%;
+  background: #fff;
+}
+.faqSection h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #d4af37;
+}
+.faqItem {
+  margin-bottom: 20px;
+}
+.faqItem h4 {
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: #d4af37;
+}
+.faqItem p {
+  color: #555;
+  font-size: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .formSection {
+    flex-direction: column;
+    padding: 30px 5%;
+  }
+}

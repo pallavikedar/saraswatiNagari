@@ -1,0 +1,162 @@
+.container {
+  padding: 40px 10%;
+  background: #fff;
+  color: #333;
+  font-family: "Poppins", sans-serif;
+}
+
+.mainTitle {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #b8860b; /* Golden */
+  margin-bottom: 40px;
+  font-family: "Playfair Display", serif;
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.statusBox {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 2px solid #b8860b;
+}
+
+.statusAvailable { background: #00ac00; }
+.statusSold { background: #c50000; }
+.statusReserved { background: #edc215; }
+.statusOpen { background: #1933f3; }
+
+.legendText {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.mapWrapper {
+  margin: 30px auto;
+  /* border: 2px solid #b8860b; */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  color: #b8860b;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+}
+
+.featuredPlot {
+  margin: 60px 0;
+}
+
+.featuredContent {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.featuredImage {
+  flex: 1;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  /* border: 3px solid #b8860b; */
+  height: 60vh;
+}
+
+.featuredText {
+  flex: 1;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.virtualTour {
+  margin: 80px 0;
+  text-align: center;
+}
+
+.virtualFrame {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  /* border: 3px solid #b8860b; */
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  height: 70vh;
+}
+
+.virtualImage {
+  width: 100%;
+  display: block;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  /* background: rgba(184,134,11,0.9); */
+  color: #fff;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.amenitiesSection {
+  margin: 80px 0;
+}
+
+.amenitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.amenityItem {
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #b8860b;
+  border-radius: 12px;
+  background: #fffdf5;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  transition: transform 0.3s ease;
+}
+
+.amenityItem:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.icon {
+  font-size: 2rem;
+  color: #b8860b;
+  margin-bottom: 12px;
+}
+
+.amenitiesFooter {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.amenitiesFooter span {
+  font-weight: 600;
+  color: #b8860b;
+}

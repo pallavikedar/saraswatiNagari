@@ -1,0 +1,601 @@
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  /* padding: 2rem; */
+  box-sizing: border-box;
+
+}
+.bannerCarousel{
+  width: 100%;
+  height: auto;
+}
+.bannerVideo{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.section {
+  background: #fff; /* Pure white background */
+  padding: 80px 20px;
+  text-align: center;
+  color: #b8860b; /* Golden text */
+  width: 100%;
+}
+
+.welcomeTitle {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: #b8860b; /* Golden */
+  letter-spacing: 1px;
+}
+
+.welcomeTitle span {
+  color: #daa520; /* Slightly brighter gold for highlight */
+}
+
+.subheading {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #b8860b;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.textContainer {
+  width: 80%;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #444; /* Subtle gray for readability */
+}
+
+.textContainer strong {
+  color: #b8860b; /* Golden highlight for names */
+}
+
+
+/* @keyframes glow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+} */
+
+/* Responsive */
+@media (max-width: 768px) {
+  .welcomeTitle {
+    font-size: 2rem;
+  }
+
+  .subheading {
+    font-size: 1.2rem;
+  }
+
+  .textContainer {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .textContainer p {
+    flex: 1 1 100%;
+  }
+}
+
+
+/* Amenities */
+/* Section Background */
+.amenitiesSection {
+ position: relative;
+    background: linear-gradient(135deg, #c69416, #e4bf6d, #f9b400);
+    /* color: #fff; */
+    padding: 100px 40px;
+    text-align: center;
+    overflow: hidden;
+    /* width: 100%; */
+}
+
+/* Subtle golden glow overlay */
+/* .amenitiesSection::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(255, 215, 0, 0.15), transparent 70%);
+  pointer-events: none;
+} */
+
+/* Title */
+.amenitiesTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  /* width: 950px; */
+  margin: 0 auto 60px;
+  line-height: 1.5;
+  background: linear-gradient(90deg, #ffffff, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
+}
+
+/* Grid */
+.amenitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 3fr));
+  gap: 35px;
+  margin-bottom: 60px;
+  padding: 20px;
+}
+
+/* Item Card */
+.amenityItem {
+    background: linear-gradient(160deg, #ffffff, #ffffff);
+    /* border: 1px solid rgba(255, 215, 0, 0.3); */
+    border-radius: 18px;
+    padding: 40px 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.182);
+    transition: all 0.35s ease;
+    cursor: pointer;
+}
+
+.amenityItem:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+  border-color: #c79e22;
+}
+
+/* Icon */
+.icon {
+  font-size: 50px;
+  color: #d5aa1c;
+  display: block;
+  margin-bottom: 18px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.amenityItem:hover .icon {
+  transform: scale(1.2) rotate(5deg);
+  color: #d99b1f;
+}
+
+/* Text inside card */
+.amenityItem p {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #d3a723;
+  transition: color 0.3s ease;
+}
+
+.amenityItem:hover p {
+  color: #d4a91d;
+}
+
+/* Footer */
+.amenitiesFooter {
+ /* max-width: 850px; */
+    margin: 0 auto;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #ffffff;
+    padding: 20px;
+}
+
+.amenitiesFooter span {
+color: #825f27;
+    font-weight: bold;
+}
+
+
+
+@media (max-width: 600px) {
+  .amenitiesTitle {
+    font-size: 1.2rem;
+  }
+
+  .icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .amenityItem p {
+    font-size: 0.9rem;
+  }
+
+  .amenitiesFooter {
+    font-size: 0.95rem;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .amenitiesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .amenitiesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* Stats Section */
+.statsSection {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 3 in one row */
+  gap: 30px;
+  padding: 70px 40px;
+  background: #fff;
+  text-align: center;
+}
+
+.statItem {
+  background: linear-gradient(145deg, #fff, #fff);
+  border: 2px solid #f5bd08;
+  border-radius: 18px;
+  padding: 40px 25px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  cursor: pointer;
+}
+
+.statItem:hover {
+  background: linear-gradient(145deg, #d0b754, #e0ac1d);
+  color: #fff;
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.icon {
+  font-size:#d1a232;
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+}
+
+.statItem:hover .icon {
+  color: #fff;
+}
+
+.statItem h4 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #444;
+}
+
+.statItem:hover h4 {
+  color: #fff;
+}
+
+.statItem p {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #b8860b;
+  margin: 0;
+}
+
+.statItem:hover p {
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .statsSection {
+    grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
+  }
+}
+
+@media (max-width: 640px) {
+  .statsSection {
+    grid-template-columns: 1fr; /* 1 per row on mobile */
+  }
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .statsSection {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .statItem p {
+    font-size: 2rem;
+  }
+}
+
+
+
+/* Existing styles remain unchanged */
+
+/* Table Section */
+.layoutSection {
+  padding: 70px 0px;
+  text-align: center;
+  background: #fff;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #b8860b;
+  margin-bottom: 10px;
+}
+
+.sectionSubtitle {
+  font-size: 1.2rem;
+  color: #d4af37;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Cards Grid */
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  gap: 24px;
+  padding: 30px;
+}
+
+.card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #f5e6c5;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  padding: 24px 20px 20px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.statusBadge {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.available {
+  background: linear-gradient(135deg, #006125, #15ee35); /* Golden */
+}
+
+.sold {
+  background: linear-gradient(135deg, #d80000, #f81717); /* Silver/Gray */
+}
+
+.cardTitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #b8860b;
+  margin: 15px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card p {
+  margin: 8px 0;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.viewButton {
+  margin-top: 18px;
+  padding: 10px 18px;
+  border: none;
+  background: linear-gradient(135deg, #b8860b, #f5d76e);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  width: 80%;
+}
+
+.viewButton:hover {
+  background: linear-gradient(135deg, #996515, #d4af37);
+  transform: scale(1.05);
+}
+
+
+/* CTA Buttons */
+.contactSection {
+  margin-top: 40px;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.contactButton {
+  padding: 12px 22px;
+  border: none;
+  background: #b8860b;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contactButton:hover {
+  background: #d4af37;
+}
+
+/* Call Banner */
+.callBanner {
+  background: #ffd700;
+  padding: 18px 25px;
+  border-radius: 10px;
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.callText {
+  font-size: 1rem;
+}
+
+.phoneNumber {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #000;
+}
+
+
+
+/* Contact Section */
+.contactSection {
+  padding: 2rem 0;
+  text-align: center;
+  background-color: #f9f6f2;
+  width: 100%;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.contactButton {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 0.75rem 0rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contactButton:hover {
+  background-color: #f47920;
+  color: #fff;
+  border-color: #f47920;
+}
+
+.contactButton:before {
+  content: "• ";
+  color: #666;
+}
+
+.callBanner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f47920;
+  color: #fff;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 5px;
+  width: 50%;
+  /* max-width: 800px; */
+  margin: 0 auto;
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.1) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 20px 20px;
+}
+
+.callText {
+  margin-right: 1rem;
+}
+
+.phoneNumber {
+  display: flex;
+  align-items: center;
+}
+
+.phoneIcon {
+  margin-right: 0.5rem;
+}
+
+
+
+/* Responsive Design for Contact Section */
+@media (max-width: 1024px) {
+  .contactSection {
+    padding: 2rem 0rem;
+  }
+
+  .contactButton {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .callBanner {
+    font-size: 1.1rem;
+    padding: 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .buttonGroup {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .contactButton {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .callBanner {
+    font-size: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .callText {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .buttonGroup {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .contactButton {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .callBanner {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+  }
+}
