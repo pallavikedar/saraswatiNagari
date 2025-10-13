@@ -1,0 +1,112 @@
+:root {
+  --deep-green: #10261f;
+  --gold: #d49237;
+  --ivory: #fefef6;
+  --light-gold: #f5e9c8;
+}
+
+/* Section */
+.section {
+  position: relative;
+ background: linear-gradient(180deg, #16201c, #1b3129);
+  padding: 100px 5%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  font-family: "sora", sans-serif;
+}
+
+/* Heading */
+.heading {
+  font-size: 2.8rem;
+  /* font-weight: 800; */
+  color: var(--gold);
+  margin-bottom: 80px;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 1.5px;
+  position: relative;
+}
+
+.heading::after {
+  content: "";
+  display: block;
+  width: 150px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 20px auto 0;
+  border-radius: 2px;
+  box-shadow: 0 0 15px rgba(212,175,55,0.6);
+}
+
+/* Flow container */
+.flow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 60px;
+  position: relative;
+}
+
+/* Card */
+.card {
+  position: relative;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 30px 25px;
+  width: 280px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+  transition: all 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.03);
+  /* box-shadow: 0 20px 40px rgba(212, 175, 55, 0.138); */
+}
+
+/* Connector */
+.connector {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--light-gold));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--deep-green);
+  font-size: 1.5rem;
+  box-shadow: 0 0 20px rgba(212,175,55,0.5);
+}
+
+/* Card content */
+.content h3 {
+  color: var(--gold);
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.content p {
+  color: var(--ivory);
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .flow {
+    gap: 40px;
+  }
+  .card {
+    width: 90%;
+  }
+}

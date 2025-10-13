@@ -1,0 +1,158 @@
+.qualitySection {
+  background-color: #fefef6;
+  padding: 100px 8%;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  color: #1e3a34;
+}
+.heading {
+  position: relative;
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #013722, #1e3a34);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  display: inline-block;
+  padding-bottom: 12px;
+  margin-bottom: 80px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+/* When visible on scroll */
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Golden underline that animates on scroll */
+.heading::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #c5a25f, #d4af37);
+  border-radius: 10px;
+  transform: translateX(-50%);
+  transition: width 1.2s ease 0.3s;
+}
+
+.visible::after {
+  width: 70%;
+}
+
+/* Elegant glowing highlight */
+.heading::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  width: 60%;
+  height: 6px;
+  background: radial-gradient(circle, rgba(197,162,95,0.6) 0%, transparent 80%);
+  transform: translateX(-50%);
+  filter: blur(8px);
+  opacity: 0;
+  transition: opacity 1.2s ease 0.5s;
+}
+
+.visible::before {
+  opacity: 1;
+}
+
+
+
+/* Grid */
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* Card */
+.card {
+  background: #fff;
+  /* border-radius: 18px; */
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  padding: 30px 20px;
+  transition: transform 0.3s ease;
+  
+}
+
+.card:hover {
+  transform: translateY(-8px);
+}
+
+/* Top Content - always visible */
+.topContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.icon {
+  font-size: 2.5rem;
+  color: #c5a25f; /* golden */
+  margin-bottom: 12px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .icon {
+  transform: scale(1.1);
+}
+
+.title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1e3a34;
+}
+
+/* Details below title - hidden initially */
+.details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+/* On hover - expand details */
+.card:hover .details {
+  max-height: 300px;
+}
+
+/* List items animation */
+.details ul {
+  list-style: disc inside;
+  padding: 0;
+  margin: 0;
+}
+
+.details li {
+  font-size: 0.95rem;
+  color: #ffffff;
+  background-color: #01441c; /* subtle golden background */
+  padding: 6px 12px;
+  border: 2px solid #c5a25f;
+  margin: 6px 0;
+  /* border-radius: 8px; */
+  opacity: 0;
+  transform: translateY(15px);
+  transition: all 0.4s ease;
+}
+
+.card:hover .details li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card:hover .details li:nth-child(1) { transition-delay: 0.1s; }
+.card:hover .details li:nth-child(2) { transition-delay: 0.2s; }
+.card:hover .details li:nth-child(3) { transition-delay: 0.3s; }
+.card:hover .details li:nth-child(4) { transition-delay: 0.4s; }
+.card:hover .details li:nth-child(5) { transition-delay: 0.5s; }

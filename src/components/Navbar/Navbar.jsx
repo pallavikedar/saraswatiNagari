@@ -1,56 +1,44 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 import logo from "../../assets/logo.png";
 import styles from "./Navbar.module.css";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-
+    const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
-    <nav className={styles.navbar}>
+    <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles.container}>
-        {/* Logo */}
-        <div className={styles.logo}>
+        <div className={styles.logo} onClick={() => navigate("/")}>
           <img src={logo} alt="Saraswati Nagri Logo" />
         </div>
 
-        {/* Toggle Button (Mobile) */}
         <button
           className={styles.menuButton}
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle Menu"
         >
           {menuOpen ? <FiX size={28} /> : <FiMenu size={28} />}
         </button>
 
-        {/* Nav Links */}
         <ul className={`${styles.navLinks} ${menuOpen ? styles.show : ""}`}>
-          <li>
-            <Link to="/" className={styles.link} onClick={() => setMenuOpen(false)}>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/about" className={styles.link} onClick={() => setMenuOpen(false)}>
-              About Us
-            </Link>
-          </li>
-          {/* <li>
-            <Link to="/our-layouts" className={styles.link} onClick={() => setMenuOpen(false)}>
-              Our Layouts
-            </Link>
-          </li> */}
-          <li>
-            <Link to="/gallery" className={styles.link} onClick={() => setMenuOpen(false)}>
-              Gallery
-            </Link>
-          </li>
-          <li>
-            <Link to="/contact" className={styles.link} onClick={() => setMenuOpen(false)}>
-              Contact Us
-            </Link>
-          </li>
+          <li><Link to="/">Home</Link></li>
+          <li><a href="#about">About Us</a></li>
+          <li><Link to="/gallery">Gallery</Link></li>
+          <li><Link to="/contact">Contact Us</Link></li>
         </ul>
       </div>
     </nav>

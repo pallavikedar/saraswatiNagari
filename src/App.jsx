@@ -11,6 +11,7 @@ import Gallery from './pages/Gallery/Gallery';
 import Blogs from './pages/Blogs/Blogs';
 import Contact from './pages/Contact/Contact';
 import ScrollToTop from './components/Scrollontop';
+import Map from './components/Map/Map';
 
 
 const App = () => {
@@ -25,6 +26,8 @@ const App = () => {
           <Route path="gallery" element={<Gallery />} />
           <Route path="blogs" element={<Blogs />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="map" element={<Map />} />
+
           
         </Route>
       </Routes>
