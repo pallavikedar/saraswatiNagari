@@ -246,6 +246,7 @@ import BookingSteps from "../BookingSteps/BookingSteps";
 import SanctioningProcess from "../SanctionProcess/SanctioningProcess";
 import BankLoanProcess from "../BankLoanProcess/BankLoanProcess";
 import { MdOutlinePriceChange } from "react-icons/md";
+import { databases } from "../../appwrite";
 
 const taglines = [
   "Your Dream Begins with the Perfect Plot.",
@@ -317,6 +318,30 @@ const tableData = [
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+
+   const [videoUrl, setVideoUrl] = useState("");
+
+  useEffect(() => {
+    const getVideo = async () => {
+      try {
+        const response = await databases.getDocument(
+          "68ece3990030d2b03bd0", // databaseId
+          "walkthrough",          // collectionId (tableId)
+          "68ece4150016400c49b4"  // documentId
+        );
+        setVideoUrl(response.url);
+      } catch (error) {
+        console.error("Error fetching video URL:", error);
+      }
+    };
+    getVideo();
+  }, []);
+
+ 
+
+
+
+
   const slides = [
     {
       id: 0,
@@ -471,7 +496,7 @@ const Home = () => {
             playsInline
             className={styles.heroVideo}
           >
-            <source src={amenitiesVideo} type="video/mp4" /> {/* Replace with actual video path */}
+            <source src={heroVideo} type="video/mp4" /> {/* Replace with actual video path */}
           </video>
         </div>
       </div>
@@ -529,7 +554,7 @@ customers.</motion.p>
       {/* Amenities Section with video background */}
       <div className={styles.amenitiesVideoWrapper} id="amenities">
         <video autoPlay loop muted playsInline className={styles.amenitiesVideo}>
-          <source src={amenitiesVideo} type="video/mp4" />
+          <source src={heroVideo} type="video/mp4" />
         </video>
   
         {/* Sliding Overlay */}
