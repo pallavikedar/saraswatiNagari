@@ -247,6 +247,7 @@ import SanctioningProcess from "../SanctionProcess/SanctioningProcess";
 import BankLoanProcess from "../BankLoanProcess/BankLoanProcess";
 import { MdOutlinePriceChange } from "react-icons/md";
 import { databases } from "../../appwrite";
+import { FaSpinner } from "react-icons/fa";
 
 const taglines = [
   "Your Dream Begins with the Perfect Plot.",
@@ -318,6 +319,7 @@ const tableData = [
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [videoLoading, setVideoLoading] = useState(true);
 
    const [videoUrl, setVideoUrl] = useState("");
 
@@ -489,15 +491,26 @@ const Home = () => {
         </div>
 
         <div className={styles.rightPanel}>
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className={styles.heroVideo}
-          >
-            <source src={heroVideo} type="video/mp4" /> {/* Replace with actual video path */}
-          </video>
+         <div className={styles.videoContainer}>
+  {videoLoading && (
+    <div className={styles.videoLoader}>
+      <FaSpinner className={styles.spinnerIcon} />
+      <p>Loading video...</p>
+    </div>
+  )}
+
+  <video
+    autoPlay
+    loop
+    muted
+    playsInline
+    className={`${styles.heroVideo} ${videoLoading ? styles.hiddenVideo : ""}`}
+    onLoadedData={() => setVideoLoading(false)}
+  >
+    <source src={heroVideo} type="video/mp4" />
+  </video>
+</div>
+
         </div>
       </div>
 
