@@ -223,7 +223,7 @@
 
 // export default Home;
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect, Suspense ,useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import styles from "./Home.module.css";
@@ -320,9 +320,34 @@ const tableData = [
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [videoLoading, setVideoLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
-   
+    const [buffered, setBuffered] = useState(0);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const updateBuffer = () => {
+      if (video.buffered.length > 0) {
+        const bufferedEnd = video.buffered.end(video.buffered.length - 1);
+        const duration = video.duration;
+        const percent = (bufferedEnd / duration) * 100;
+        setBuffered(percent);
+      }
+    };
+
+    const onCanPlay = () => setLoading(false);
+
+    video.addEventListener("progress", updateBuffer);
+    video.addEventListener("canplay", onCanPlay);
+
+    return () => {
+      video.removeEventListener("progress", updateBuffer);
+      video.removeEventListener("canplay", onCanPlay);
+    };
+  }, []);
 
 
 
@@ -475,26 +500,29 @@ const Home = () => {
 
         <div className={styles.rightPanel}>
          <div className={styles.videoContainer}>
-  {videoLoading && (
-    <div className={styles.videoLoader}>
-      <FaSpinner className={styles.spinnerIcon} />
-      <p>Loading video...</p>
+      {loading && (
+        <div className={styles.videoLoader}>
+          <FaSpinner className={styles.spinnerIcon} />
+          <p>Loading video... {Math.floor(buffered)}%</p>
+          <div className={styles.progressBar}>
+            <div className={styles.progressFill} style={{ width: `${buffered}%` }}></div>
+          </div>
+        </div>
+      )}
+
+      <video
+        ref={videoRef}
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        className={`${styles.heroVideo} ${loading ? styles.hiddenVideo : ""}`}
+        onLoadedData={() => setLoading(false)}
+      >
+        <source src={heroVideo} type="video/mp4" />
+      </video>
     </div>
-  )}
-
-  <video
-    autoPlay
-    loop
-    muted
-    playsInline
-    className={`${styles.heroVideo} ${videoLoading ? styles.hiddenVideo : ""}`}
-    onLoadedData={() => setVideoLoading(false)}
-     
-  >
-    <source src={heroVideo} type="video/mp4" />
-  </video>
-</div>
-
         </div>
       </div>
 
