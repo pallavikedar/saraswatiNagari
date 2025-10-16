@@ -520,7 +520,7 @@ const Home = () => {
         className={`${styles.heroVideo} ${loading ? styles.hiddenVideo : ""}`}
         onLoadedData={() => setLoading(false)}
       >
-        <source src={heroVideo} type="video/mp4" />
+        <source src='https://fra.cloud.appwrite.io/v1/storage/buckets/68ece1ef00083478df97/files/68f0a5de000bd92c15bb/view?project=68ece1d1000abe9952c0&mode=all' type="video/mp4" />
       </video>
     </div>
         </div>
@@ -581,7 +581,7 @@ customers.</motion.p>
  <LazySection>
       <div className={styles.amenitiesVideoWrapper} id="amenities">
         <video autoPlay loop muted playsInline className={styles.amenitiesVideo}>
-          <source src={heroVideo} type="video/mp4" />
+          <source src='https://fra.cloud.appwrite.io/v1/storage/buckets/68ece1ef00083478df97/files/68f0a5de000bd92c15bb/view?project=68ece1d1000abe9952c0&mode=all' type="video/mp4" />
         </video>
   
         {/* Sliding Overlay */}
