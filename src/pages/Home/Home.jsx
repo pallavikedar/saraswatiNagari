@@ -223,7 +223,7 @@
 
 // export default Home;
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import styles from "./Home.module.css";
@@ -248,6 +248,7 @@ import BankLoanProcess from "../BankLoanProcess/BankLoanProcess";
 import { MdOutlinePriceChange } from "react-icons/md";
 import { databases } from "../../appwrite";
 import { FaSpinner } from "react-icons/fa";
+import LazySection from "../LazySection";
 
 const taglines = [
   "Your Dream Begins with the Perfect Plot.",
@@ -321,25 +322,7 @@ const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [videoLoading, setVideoLoading] = useState(true);
 
-   const [videoUrl, setVideoUrl] = useState("");
-
-  useEffect(() => {
-    const getVideo = async () => {
-      try {
-        const response = await databases.getDocument(
-          "68ece3990030d2b03bd0", // databaseId
-          "walkthrough",          // collectionId (tableId)
-          "68ece4150016400c49b4"  // documentId
-        );
-        setVideoUrl(response.url);
-      } catch (error) {
-        console.error("Error fetching video URL:", error);
-      }
-    };
-    getVideo();
-  }, []);
-
- 
+   
 
 
 
@@ -506,6 +489,7 @@ const Home = () => {
     playsInline
     className={`${styles.heroVideo} ${videoLoading ? styles.hiddenVideo : ""}`}
     onLoadedData={() => setVideoLoading(false)}
+     
   >
     <source src={heroVideo} type="video/mp4" />
   </video>
@@ -565,6 +549,8 @@ customers.</motion.p>
 
 
       {/* Amenities Section with video background */}
+      <Suspense fallback={<div className={styles.sectionLoader}>Loading...</div>}>
+ <LazySection>
       <div className={styles.amenitiesVideoWrapper} id="amenities">
         <video autoPlay loop muted playsInline className={styles.amenitiesVideo}>
           <source src={heroVideo} type="video/mp4" />
@@ -610,7 +596,13 @@ customers.</motion.p>
           </motion.section>
         </motion.div>
       </div>
-     <QualityWork />
+      </LazySection>
+      </Suspense>
+    <Suspense fallback={<div className={styles.sectionLoader}>Loading...</div>}>
+        <LazySection>
+          <QualityWork />
+        </LazySection>
+        </Suspense>
       {/* Premium Layout Carousel */}
       <div className={styles.premiumWrapper}>
         {/* Parallax Gold Background */}
@@ -636,7 +628,8 @@ customers.</motion.p>
 
         {/* Animated Background Glow */}
         <div className={styles.glowBackground}></div>
-
+<Suspense fallback={<div className={styles.sectionLoader}>Loading...</div>}>
+ <LazySection>
         {/* Animated Carousel */}
         <AnimatePresence mode="sync">
           <motion.div
@@ -705,16 +698,40 @@ customers.</motion.p>
             ))}
           </motion.div>
         </AnimatePresence>
+        </LazySection>
+        </Suspense>
+
 
 
 
       </div>
-     <UpcomingProjects />
-   
-   <BookingSteps/>
-   <SanctioningProcess/>
-   <BankLoanProcess/>
-   <WhyChoose />
+    
+
+
+
+    <Suspense fallback={<div className={styles.sectionLoader}>Loading...</div>}>
+       
+
+        <LazySection>
+          <UpcomingProjects />
+        </LazySection>
+
+        <LazySection>
+          <BookingSteps />
+        </LazySection>
+
+        <LazySection>
+          <SanctioningProcess />
+        </LazySection>
+
+        <LazySection>
+          <BankLoanProcess />
+        </LazySection>
+
+        <LazySection>
+          <WhyChoose />
+        </LazySection>
+      </Suspense>
       {/* Contact Section */}
 
       <motion.section className={styles.contactSection} initial="hidden" whileInView="visible" viewport={{ once: true }}>
