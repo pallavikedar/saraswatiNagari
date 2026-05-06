@@ -124,6 +124,11 @@ const Contact = () => {
           </motion.div>
           <motion.h3 variants={fadeInUpVariants}>Phone Numbers</motion.h3>
           <motion.p variants={fadeInUpVariants}>
+            <a href="https://wa.me/919494942894" target="_blank" rel="noopener noreferrer" className={styles.whatsappLink}>
+              📞 9494942894
+            </a>
+          </motion.p>
+          <motion.p variants={fadeInUpVariants}>
             <a href="https://wa.me/91982338866" target="_blank" rel="noopener noreferrer" className={styles.whatsappLink}>
               📞 9823388866
             </a>

@@ -11,71 +11,86 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Scroll handler with throttle
+  /* ── Scroll detection ── */
   useEffect(() => {
     let ticking = false;
-    const handleScroll = () => {
+    const onScroll = () => {
       if (!ticking) {
-        window.requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
           setScrolled(window.scrollY > 50);
           ticking = false;
         });
         ticking = true;
       }
     };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll when menu open
+  /* ── Lock body scroll when drawer open ── */
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
 
-  // Close menu on route change
+  /* ── Close on route change ── */
   useEffect(() => {
     setMenuOpen(false);
   }, [location.pathname]);
 
   const closeMenu = useCallback(() => setMenuOpen(false), []);
 
-  const handleSectionClick = useCallback((sectionId) => {
-    closeMenu();
-    if (location.pathname === "/") {
-      const el = document.getElementById(sectionId);
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    } else {
-      navigate("/");
-      setTimeout(() => {
+  /* ── Scroll to section (works cross-page) ── */
+  const handleSectionClick = useCallback(
+    (sectionId) => {
+      closeMenu();
+      if (location.pathname === "/") {
         const el = document.getElementById(sectionId);
         if (el) el.scrollIntoView({ behavior: "smooth" });
-      }, 200);
-    }
-  }, [location.pathname, navigate, closeMenu]);
+      } else {
+        navigate("/");
+        setTimeout(() => {
+          const el = document.getElementById(sectionId);
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+        }, 250);
+      }
+    },
+    [location.pathname, navigate, closeMenu]
+  );
 
   return (
     <>
+      {/* ── Navbar bar ── */}
       <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
         <div className={styles.container}>
-          <div className={styles.logo} onClick={() => { navigate("/"); closeMenu(); }}>
-            <img src={logo} alt="Saraswati Nagri Logo" />
+
+          {/* Logo */}
+          <div
+            className={styles.logo}
+            onClick={() => { navigate("/"); closeMenu(); }}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === "Enter" && navigate("/")}
+          >
+            <img src={logo} alt="Saraswati Nagri" />
           </div>
 
+          {/* Hamburger — only visible on mobile */}
           <button
             className={`${styles.menuButton} ${menuOpen ? styles.active : ""}`}
-            onClick={() => setMenuOpen(!menuOpen)}
+            onClick={() => setMenuOpen((prev) => !prev)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
+            aria-controls="mobile-nav"
           >
             {menuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
           </button>
 
-          <ul className={`${styles.navLinks} ${menuOpen ? styles.show : ""}`}>
+          {/* Nav links */}
+          <ul
+            id="mobile-nav"
+            className={`${styles.navLinks} ${menuOpen ? styles.show : ""}`}
+          >
             <li>
               <span onClick={() => handleSectionClick("home")}>Home</span>
             </li>
@@ -92,10 +107,11 @@ const Navbar = () => {
               <Link to="/contact" onClick={closeMenu}>Contact Us</Link>
             </li>
           </ul>
+
         </div>
       </nav>
 
-      {/* Overlay to close menu on outside click */}
+      {/* ── Dark overlay — click to close ── */}
       <div
         className={`${styles.overlay} ${menuOpen ? styles.show : ""}`}
         onClick={closeMenu}

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./UpcomingProjects.module.css";
 
-const WHATSAPP_NUMBER = "919823388866"; // +91 98233 88866
+const WHATSAPP_NUMBER = "919494942894"; // +91 98233 88866
 
 const UpcomingProjects = () => {
   const sectionRef = useRef(null);
