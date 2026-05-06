@@ -1,9 +1,6 @@
 import React from "react";
 import styles from "./Gallery.module.css";
 
-import img1 from '../../assets/img1.jpg';
-import img2 from '../../assets/img2.jpg';
-
 const Gallery = () => {
 
   const galleryItems = [
@@ -37,6 +34,8 @@ const Gallery = () => {
               <img
                 src={item.img}
                 alt={item.title}
+                loading="lazy"
+                decoding="async"
                 className={styles.galleryImage}
               />
               <div className={styles.overlay}>
