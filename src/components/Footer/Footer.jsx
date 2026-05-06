@@ -73,7 +73,7 @@ const currentYear = new Date().getFullYear();
             transition={{ delay: 0.4 }}
           >
             <strong>Phone:</strong><br />
-            <a href="tel:9494942894" className={styles.link}>9494942894</a>  
+            <a href="tel:9494942894" className={styles.link}>+91 9494942894</a>  
             {/* <a href="tel:7888028866" className={styles.link}>7888028866</a> */}
           </motion.p>
           <motion.p 
