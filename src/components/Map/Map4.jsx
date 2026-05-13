@@ -853,21 +853,7 @@ const Map5 = () => {
   return (
     <div className="pm-root">
       {/* Header with Legend */}
-      <div className="pm-header">
-        <div className="pm-brand">
-          <div className="pm-brand-icon">🏘️</div>
-          <div>
-            <div className="pm-brand-name">{PROJECT_NAME}</div>
-            <div className="pm-brand-sub">Premium Layout | RERA Approved</div>
-          </div>
-        </div>
-        <div className="pm-legend">
-          <div className="pm-leg-item"><div className="pm-leg-dot sold"></div><span>Sold/Booked</span></div>
-          <div className="pm-leg-item"><div className="pm-leg-dot reserved"></div><span>Reserved</span></div>
-          <div className="pm-leg-item"><div className="pm-leg-dot available"></div><span>Available</span></div>
-          <div className="pm-leg-item"><div className="pm-leg-dot open"></div><span>Open Space</span></div>
-        </div>
-      </div>
+     
 
       {/* Stats Bar */}
       <div className="pm-stats">
@@ -911,29 +897,7 @@ const Map5 = () => {
                   className="pm-map-img"
                 />
                 {/* Render interactive plot buttons over the image */}
-                {plotsPositions.map((plot) => {
-                  const plotData = getPlotData(plot.id);
-                  const status = plotData?.status || "available";
-                  const isSelected = selectedId === plot.id;
-                  
-                  return (
-                    <button
-                      key={plot.id}
-                      className={`pm-plot-btn ${status} ${isSelected ? "pm-selected" : ""}`}
-                      style={{
-                        top: plot.top,
-                        left: plot.left,
-                        width: plot.width,
-                        height: plot.height,
-                        position: "absolute",
-                      }}
-                      onClick={() => handlePlotClick(plot.id)}
-                      title={`Plot #${plot.id} — ${status.toUpperCase()}`}
-                    >
-                      {plot.id}
-                    </button>
-                  );
-                })}
+                
               </div>
             </div>
           </div>
@@ -956,9 +920,7 @@ const Map5 = () => {
                   onClick={() => handlePlotClick(plot.id)}
                 >
                   <div className="pm-card-num">{plot.id === "Open Space" ? "🏞️ OS" : `${plotId}`}</div>
-                  <div className="pm-card-type">{plot.type}</div>
-                  {plot.price !== "N/A" && <div className="pm-card-price">{plot.price}</div>}
-                  <span className={`pm-badge ${plot.status}`}>{plot.status}</span>
+              
                 </div>
               );
             })}
