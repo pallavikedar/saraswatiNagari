@@ -21,9 +21,9 @@ const Gallery = () => {
         <div className={styles.banner}>
           <div className={styles.bannerContent}>
             <h1>Gallery</h1>
-            <p className={styles.breadcrumbs}>
+            {/* <p className={styles.breadcrumbs}>
               <a href="/">Home</a> <span>|</span> Gallery
-            </p>
+            </p> */}
           </div>
         </div>
 

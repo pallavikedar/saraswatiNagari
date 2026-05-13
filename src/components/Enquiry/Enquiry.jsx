@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './EnquiryForm.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const EnquiryForm = () => {
-    const navigate = useNavigate()
+  const { state } = useLocation();
+  const projectName = state?.projectName;
+  const selectedPlot = state?.selectedPlot;
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: '',
     contactNo: '',
@@ -12,41 +16,98 @@ const EnquiryForm = () => {
     availability: '',
     contactTime: '',
   });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  // Auto-populate interestedLayout when projectName is available
+  useEffect(() => {
+    if (projectName) {
+      setFormData(prev => ({
+        ...prev,
+        interestedLayout: projectName
+      }));
+    }
+  }, [projectName]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    setIsSubmitting(true);
+    setSubmitStatus(null);
 
-  const whatsappNumber = "919494942894"; // Replace with your WhatsApp number (without + or dashes)
+    try {
+      // Prepare data for API based on the required format
+      const apiData = {
+        projectName: projectName || formData.interestedLayout || "Saraswati Nagari",
+        plotNumber: selectedPlot?.id || "N/A",
+        plotType: selectedPlot?.type || "Standard Lot",
+        price: parseFloat(selectedPlot?.price?.replace(/[^0-9.-]+/g, '')) || 0,
+        plotSize: selectedPlot?.size || "N/A",
+        areaSqft: selectedPlot?.area !== "N/A" ? parseFloat(selectedPlot?.area) : 0,
+        facing: selectedPlot?.facing !== "N/A" ? selectedPlot.facing : "N/A",
+        name: formData.name,
+        contactNo: formData.contactNo,
+        email: formData.email,
+        interestedLayout: formData.interestedLayout,
+        availability: formData.availability,
+        preferredContactTime: formData.contactTime
+      };
 
-  const message = `
-New Enquiry - Saraswati Nagri
+      console.log('Sending API Data:', apiData);
 
-Name: ${formData.name}
-Contact No: ${formData.contactNo}
-Email: ${formData.email}
-Interested Layout: ${formData.interestedLayout}
-Availability: ${formData.availability}
-Preferred Contact Time: ${formData.contactTime}
-  `;
+      // POST to API
+      const response = await fetch('https://api.sgroup.space/plot-enquiries/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(apiData)
+      });
 
-  const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-
-  window.open(whatsappURL, "_blank");
-
-  // Optional redirect after opening WhatsApp
-  navigate("/");
-};
+      // Handle response
+      if (response.ok) {
+        const result = await response.json();
+        console.log('API Success:', result);
+        setSubmitStatus('success');
+        
+        // Show success message
+        alert('Enquiry submitted successfully! We will contact you soon.');
+        
+        // Optional redirect after successful submission
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
+      } else {
+        // Handle API error
+        const errorText = await response.text();
+        console.error('API Error:', response.status, errorText);
+        setSubmitStatus('error');
+        alert(`Server error (${response.status}). Please try again or contact support.`);
+      }
+    } catch (error) {
+      console.error('Network Error:', error);
+      setSubmitStatus('error');
+      alert("Network error. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="enquiry-container">
       <div className="enquiry-card">
         <h2 className="enquiry-title">Get in Touch</h2>
-        <p className="enquiry-subtitle">Fill in your details and we'll contact you soon</p>
+        <p className="enquiry-subtitle">
+          {projectName 
+            ? `Enquiry for ${projectName}${selectedPlot ? ` - Plot ${selectedPlot.id}` : ''}` 
+            : 'Fill in your details and we\'ll contact you soon'}
+        </p>
 
         <form onSubmit={handleSubmit} className="enquiry-form">
           <div className="form-row">
@@ -92,13 +153,22 @@ Preferred Contact Time: ${formData.contactTime}
           <div className="form-row">
             <div className="form-group">
               <label>Interested Layout <span className="required">*</span></label>
-              <select name="interestedLayout" value={formData.interestedLayout} onChange={handleChange} required>
+              <select 
+                name="interestedLayout" 
+                value={formData.interestedLayout} 
+                onChange={handleChange} 
+                required
+              >
                 <option value="">Select Layout</option>
-                {[...Array(11)].map((_, i) => {
-                  const num = i + 1;
-                  const formatted = num < 10 ? `0${num}` : num;
-                  return <option key={num} value={`Saraswati Nagari ${formatted}`}>Saraswati Nagari {formatted}</option>;
-                })}
+                {projectName ? (
+                  <option value={projectName}>{projectName}</option>
+                ) : (
+                  [...Array(11)].map((_, i) => {
+                    const num = i + 1;
+                    const formatted = num < 10 ? `0${num}` : num;
+                    return <option key={num} value={`Saraswati Nagari ${formatted}`}>Saraswati Nagari {formatted}</option>;
+                  })
+                )}
               </select>
             </div>
 
@@ -120,20 +190,43 @@ Preferred Contact Time: ${formData.contactTime}
               <label>Preferred Contact Time <span className="required">*</span></label>
               <select name="contactTime" value={formData.contactTime} onChange={handleChange} required>
                 <option value="">Choose Time</option>
-                {[...Array(10)].map((_, i) => {
-                  const hour = 9 + i;
-                  const displayHour = hour > 12 ? hour - 12 : hour;
-                  const ampm = hour >= 12 ? 'PM' : 'AM';
-                  const timeStr = `${displayHour.toString().padStart(2, '0')}:00 ${ampm}`;
-                  return <option key={i} value={timeStr}>{timeStr}</option>;
-                })}
+                {["Morning", "Afternoon", "Evening"].map((time) => (
+                  <option key={time} value={time}>{time}</option>
+                ))}
               </select>
             </div>
           </div>
 
-          <button type="submit" className="submit-button">
-            Submit Enquiry
+          {/* Display selected plot info if available */}
+          {selectedPlot && (
+            <div className="selected-plot-info">
+              <h4>Selected Plot Details:</h4>
+              <div className="plot-details">
+                <p><strong>Plot Number:</strong> {selectedPlot.id}</p>
+                <p><strong>Type:</strong> {selectedPlot.type}</p>
+                <p><strong>Price:</strong> {selectedPlot.price}</p>
+                <p><strong>Size:</strong> {selectedPlot.size}</p>
+                {selectedPlot.area !== "N/A" && <p><strong>Area:</strong> {selectedPlot.area}</p>}
+                {selectedPlot.facing !== "N/A" && <p><strong>Facing:</strong> {selectedPlot.facing}</p>}
+              </div>
+            </div>
+          )}
+
+          <button type="submit" className="submit-button" disabled={isSubmitting}>
+            {isSubmitting ? "Submitting..." : "Submit Enquiry"}
           </button>
+
+          {/* Status messages */}
+          {submitStatus === 'success' && (
+            <p style={{ color: 'green', marginTop: '15px', textAlign: 'center' }}>
+              ✓ Enquiry submitted successfully! Redirecting...
+            </p>
+          )}
+          {submitStatus === 'error' && (
+            <p style={{ color: 'red', marginTop: '15px', textAlign: 'center' }}>
+              ✗ Submission failed. Please try again.
+            </p>
+          )}
         </form>
       </div>
     </div>

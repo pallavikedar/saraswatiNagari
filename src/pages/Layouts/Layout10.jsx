@@ -9,12 +9,43 @@ import { MdWaterDrop, MdElectricBolt } from "react-icons/md";
 import { FaPersonSwimming, FaWarehouse, FaTree } from "react-icons/fa6";
 import { GiBrickWall, GiWaterRecycling, GiWaterfall } from "react-icons/gi";
 import image from '../../assets/layouts1.jpg';
+import Map11 from "../../components/Map/Map11";
 
 const BROCHURE_PDF = "/Saraswati 11.pdf";
 const PAMPHLET_PDF = "/Pomplate.pdf";
 
 const Map = lazy(() => import("../../components/Map/Map"));
 const PanoramaViewer = lazy(() => import("../../components/PanoramaViewer"));
+
+// ✅ FIX: Create LazyOnScroll component
+const LazyOnScroll = ({ children, fallback }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = React.useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1, rootMargin: "200px" }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref}>
+      {isVisible ? children : (fallback || <LoadingSpinner />)}
+    </div>
+  );
+};
 
 const LoadingSpinner = () => (
   <motion.div
@@ -85,9 +116,6 @@ const Layout10 = () => {
 
   return (
     <div className={styles.container}>
-
-      {/* ── INLINE AD BANNER (appears after 5s, not a popup) ── */}
-     
       {/* ── HERO ── */}
       <motion.section className={styles.heroSection} style={{ opacity, scale }}>
         <motion.div className={styles.heroGradient} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2 }} />
@@ -99,89 +127,83 @@ const Layout10 = () => {
         </motion.p>
         <motion.div className={styles.heroAccent} initial={{ width: 0 }} animate={{ width: 80 }} transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }} />
       </motion.section>
- <AnimatePresence>
-        {bannerVisible && (
-          <motion.div
-            className={styles.adBannerSection}
-            initial={{ opacity: 0, y: -40 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -30 }}
-            transition={{ type: "spring", stiffness: 180, damping: 20 }}
+
+      {/* ── MAP SECTION ── */}
+      <motion.section 
+        className={styles.videoSection}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={staggerContainer}
+      >
+        <motion.h2 
+          className={styles.sectionTitle}
+          variants={fadeInUp}
+        >
+          Plots Status
+        </motion.h2>
+        
+        {/* Lazy loaded Map with scale animation */}
+        <motion.div 
+          className={styles.mapWrapper}
+          variants={fadeInScale}
+        >
+          <motion.div 
+            className={styles.mapFrame}
+            whileHover={{ 
+              y: -5,
+              boxShadow: "0 15px 45px rgba(184, 134, 11, 0.2)"
+            }}
+            transition={{ duration: 0.3 }}
           >
-            <div className={styles.adBannerInner}>
-              {/* Image side */}
-              <div className={styles.adImgWrap}>
-                <img src={adBanner} alt="Saraswati Nagri Ad" />
-              </div>
-
-              {/* Content side */}
-              <div className={styles.adContent}>
-                {/* <button
-                  className={styles.adClose}
-                  onClick={() => setBannerVisible(false)}
-                  aria-label="Close"
-                >
-                  ✕
-                </button> */}
-
-                {/* <p className={styles.adTag}>Limited Plots Available</p>
-                <h3 className={styles.adTitle}>
-                  Saraswati <span>Nagri – 11</span>
-                </h3>
-                <p className={styles.adDesc}>
-                  NMRDA sanctioned residential plots in Nagpur by SS Construction. Premium amenities, prime location.
-                </p>
-
-                <div className={styles.adDivider} />
-
-                <p className={styles.adContact}>For more details contact us</p>
-                <div className={styles.adPhones}>
-                  <a href="tel:+919494942894" className={styles.adPhone}>📞 +91 94 94 94 28 94</a>
-                  <a href="tel:+917888028866" className={styles.adPhone}>📞 +91 78 88 02 88 66</a>
-                </div> */}
-
-                <div className={styles.adBtnRow}>
-                  <button
-                    className={styles.adBtnPrimary}
-                    onClick={() => window.open(BROCHURE_PDF, "_blank")}
-                  >
-                    ⬇ Brochure
-                  </button>
-                   <button
-                    className={styles.btnPamphlet}
-                    onClick={() => window.location.href = "tel:+919494942894"}
-                  >
-                    Call
-                  </button>
-                  
-                  <button
-                    className={styles.btnPamphlet2}
-                    onClick={() =>
-                      window.open(
-                        "https://wa.me/919494942894?text=Hello!%20I'm%20interested%20in%20Saraswati%20Nagri 11%20layouts.%20Can%20you%20share%20more%20details?",
-                        "_blank"
-                      )
-                    }
-                  >
-                    WhatsApp
-                  </button>
-                </div>
-              </div>
-            </div>
+            <LazyOnScroll fallback={<LoadingSpinner />}>
+              <Suspense fallback={<LoadingSpinner />}>
+                <Map11/>
+              </Suspense>
+            </LazyOnScroll>
           </motion.div>
-        )}
-      </AnimatePresence>
-      {/* ── AMENITIES ── */}
-      <motion.section className={styles.amenitiesSection} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}>
+        </motion.div>
+      </motion.section>
+
+      {/* ── AMENITIES SECTION ── */}
+      <motion.section 
+        className={styles.amenitiesSection} 
+        initial="hidden" 
+        whileInView="visible" 
+        viewport={{ once: true, margin: "-100px" }} 
+        variants={staggerContainer}
+      >
         <motion.h2 className={styles.sectionTitle} variants={slideInRight}>
           Artistry in Infrastructure & Timeless Amenities
         </motion.h2>
+        
         <motion.div className={styles.amenitiesGrid} variants={staggerContainer}>
           {amenitiesList.map((amenity, index) => (
-            <motion.div className={styles.amenityItem} key={index} variants={itemVariant}
-              whileHover={{ y: -8, boxShadow: "0 12px 30px rgba(184, 134, 11, 0.2)", transition: { duration: 0.3 } }}>
-              <motion.div className={styles.iconHalo} whileHover={{ scale: 1.1, rotate: 5, transition: { duration: 0.3 } }}>
-                <motion.span className={styles.icon} whileHover={{ scale: 1.2, transition: { duration: 0.3 } }}>
+            <motion.div 
+              className={styles.amenityItem} 
+              key={index} 
+              variants={itemVariant}
+              whileHover={{ 
+                y: -8, 
+                boxShadow: "0 12px 30px rgba(184, 134, 11, 0.2)", 
+                transition: { duration: 0.3 } 
+              }}
+            >
+              <motion.div 
+                className={styles.iconHalo} 
+                whileHover={{ 
+                  scale: 1.1, 
+                  rotate: 5, 
+                  transition: { duration: 0.3 } 
+                }}
+              >
+                <motion.span 
+                  className={styles.icon} 
+                  whileHover={{ 
+                    scale: 1.2, 
+                    transition: { duration: 0.3 } 
+                  }}
+                >
                   {amenity.icon}
                 </motion.span>
               </motion.div>
@@ -189,10 +211,16 @@ const Layout10 = () => {
             </motion.div>
           ))}
         </motion.div>
- 
 
+        {/* ── LOCATION & FINANCE SECTION ── */}
         <div className={styles.locationSection}>
-          <motion.h4 className={styles.sectionTitle} variants={fadeInUp} initial="hidden" animate="visible">
+          <motion.h4 
+            className={styles.sectionTitle} 
+            variants={fadeInUp} 
+            initial="hidden" 
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             📍 Prime Location with Unmatched Connectivity
           </motion.h4>
           <ul className={styles.locationList}>
@@ -204,7 +232,13 @@ const Layout10 = () => {
             <li>🚗 Zero Mile & Railway Station – 6–7 km</li>
           </ul>
 
-          <motion.h4 className={styles.sectionTitle} variants={fadeInUp} initial="hidden" animate="visible">
+          <motion.h4 
+            className={styles.sectionTitle} 
+            variants={fadeInUp} 
+            initial="hidden" 
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             🏡 Educational & Convenience Hotspots
           </motion.h4>
           <ul className={styles.locationList}>
@@ -213,10 +247,23 @@ const Layout10 = () => {
             <li>🌟 Godhni T-Point & Bokhara – 0.5 km</li>
           </ul>
 
-          <motion.div className={styles.financeSection} variants={fadeInUp} initial="hidden" animate="visible">
+          <motion.div 
+            className={styles.financeSection} 
+            variants={fadeInUp} 
+            initial="hidden" 
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             <p className={styles.financeText}>✨ <strong>Fixed Rate:</strong> ₹ 2000 per sq. ft. ✨</p>
           </motion.div>
-          <motion.div className={styles.financeSection} variants={fadeInUp} initial="hidden" animate="visible">
+          
+          <motion.div 
+            className={styles.financeSection} 
+            variants={fadeInUp} 
+            initial="hidden" 
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             <p className={styles.financeText}>✅ The <strong>ONLY</strong> layout in the area with premium amenities!</p>
             <p className={styles.financeText}>🏊 Swimming Pool, Clubhouse, Tree Plantation & More</p>
           </motion.div>
@@ -225,27 +272,60 @@ const Layout10 = () => {
         <div className={styles.mapwrapper}>
           <motion.p className={styles.amenitiesFooter} variants={fadeInUp}>
             Orchestrated under the stewardship of{" "}
-            <motion.span className={styles.backSpan} whileHover={{ color: "#DAA520", transition: { duration: 0.2 } }}>
+            <motion.span 
+              className={styles.backSpan} 
+              whileHover={{ 
+                color: "#DAA520", 
+                transition: { duration: 0.2 } 
+              }}
+            >
               SS Construction
             </motion.span>, each vision materializes with exquisite finesse,
             unyielding refinement, and an ethos of cultivating legacies that whisper of enduring grace.
           </motion.p>
+          
           <iframe
+            title="Location Map"
             src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3534.9712451877717!2d79.05319307526221!3d21.232504980468317!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDEzJzU3LjAiTiA3OcKwMDMnMjAuOCJF!5e1!3m2!1sen!2sin!4v1766404182741!5m2!1sen!2sin"
-            style={{width:"100%",height:"clamp(280px, 50vw, 450px)",border:"none",borderRadius:"10px"}}
+            style={{
+              width: "100%",
+              height: "clamp(280px, 50vw, 450px)",
+              border: "none",
+              borderRadius: "10px"
+            }}
           />
         </div>
       </motion.section>
 
       {/* ── FOOTER ── */}
-      <motion.footer className={styles.pageFooter} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
-        <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
+      <motion.footer 
+        className={styles.pageFooter} 
+        initial="hidden" 
+        whileInView="visible" 
+        viewport={{ once: true }} 
+        variants={fadeInUp}
+      >
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          viewport={{ once: true }} 
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           Shall We Unveil Your Chapter? Our Attendants Await.
         </motion.p>
-        <a href="https://wa.me/919494942894">
-          <motion.button className={styles.footerCta}
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.4 }}
-            whileHover={{ scale: 1.05, boxShadow: "0 8px 25px rgba(184, 134, 11, 0.3)", transition: { duration: 0.3 } }}
+        
+        <a href="https://wa.me/919494942894" target="_blank" rel="noopener noreferrer">
+          <motion.button 
+            className={styles.footerCta}
+            initial={{ opacity: 0, y: 20 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true }} 
+            transition={{ duration: 0.6, delay: 0.4 }}
+            whileHover={{ 
+              scale: 1.05, 
+              boxShadow: "0 8px 25px rgba(184, 134, 11, 0.3)", 
+              transition: { duration: 0.3 } 
+            }}
             whileTap={{ scale: 0.98 }}
           >
             Arrange an Intimate Tour

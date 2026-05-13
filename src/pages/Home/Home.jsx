@@ -8,6 +8,7 @@ import { MdWaterDrop, MdElectricBolt } from "react-icons/md";
 import { GiBrickWall, GiWaterRecycling, GiWaterfall } from "react-icons/gi";
 import layoutimg from '../../assets/layout1.jpg';
 import layoutimg2 from '../../assets/layout2.jpg';
+import layout11 from "../../assets/Sarswati Nagari 11.jpg.jpeg";
 import WhyChoose from "../Choose/Choose";
 import QualityWork from "../Qualitywork/QualityWork";
 import UpcomingProjects from "../UpcomingProject/UpcomingProject";
@@ -147,7 +148,7 @@ const Home = () => {
     { id: 8, layoutKey: t.layouts.sn8.name, locationKey: t.layouts.sn8.location, areaKey: t.layouts.sn8.area, price: "₹2000", status: t.layouts.status.available, img: "https://firebasestorage.googleapis.com/v0/b/abhi-9bd8f.firebasestorage.app/o/saraswati%20nagri%208_2%20-%20Photo%20(1).jpg?alt=media&token=21298f0a-4e8e-41b1-9658-f109f0b32c1f", nav: "our-layouts7" },
     { id: 9, layoutKey: t.layouts.sn9.name, locationKey: t.layouts.sn9.location, areaKey: t.layouts.sn9.area, price: "₹2250", status: t.layouts.status.available, img: layoutimg, nav: "our-layouts8" },
     { id: 10, layoutKey: t.layouts.sn10.name, locationKey: t.layouts.sn10.location, areaKey: t.layouts.sn10.area, price: "₹2000", status: t.layouts.status.sold, img: layoutimg2, nav: "our-layouts9" },
-    { id: 11, layoutKey: t.layouts.sn11.name, locationKey: t.layouts.sn11.location, areaKey: t.layouts.sn11.area, price: "₹2450", status: t.layouts.status.sold, img: layoutimg, nav: "our-layouts10" },
+    { id: 11, layoutKey: t.layouts.sn11.name, locationKey: t.layouts.sn11.location, areaKey: t.layouts.sn11.area, price: "₹2450", status: t.layouts.status.sold, img: layout11, nav: "our-layouts10" },
   ];
 
   // ── Video buffer tracking ─────────────────────────────────────────────────
@@ -290,7 +291,7 @@ const Home = () => {
             <div
               className={styles.posterBg}
               style={{
-                backgroundImage: `url("https://firebasestorage.googleapis.com/v0/b/abhi-9bd8f.firebasestorage.app/o/saraswati%20nagri%208_2%20-%20Photo%20(1).jpg?alt=media&token=21298f0a-4e8e-41b1-9658-f109f0b32c1f")`,
+                backgroundImage: `url("../assets/Sarswati Nagari 11.jpg.jpeg")`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 position: "absolute",

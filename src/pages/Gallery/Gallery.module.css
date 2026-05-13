@@ -4,7 +4,7 @@
 
 .banner {
   position: relative;
-  background-image: url('../../assets/about.jpg');
+  background-image: url('../../assets/layout6.jpg');
   background-size: cover;
   background-position: center;
   height: clamp(40vh, 60vh, 70vh);

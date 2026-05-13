@@ -1,151 +1,3 @@
-// import React, { useState } from "react";
-// import styles from "./LeadForm.module.css";
-
-// const LeadForm = () => {
-//   const [form, setForm] = useState({
-//     name: "",
-//     phone: "",
-//     area: "",
-//     time: "Morning",
-//     whatsappConsent: true,
-//   });
-
-//   const handleChange = (e) => {
-//     const { name, value, type, checked } = e.target;
-//     setForm({ ...form, [name]: type === "checkbox" ? checked : value });
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-
-//     if (!form.name || !form.phone) {
-//       alert("Please fill required fields");
-//       return;
-//     }
-
-//     const message = `Hello, I’m interested in plot details.
-
-// Name: ${form.name}
-// Phone: ${form.phone}
-// Preferred Area: ${form.area || "Not specified"}
-// Best Time to Call: ${form.time}
-// WhatsApp Contact: ${form.whatsappConsent ? "Yes" : "No"}
-
-// Please share brochure & pricing details.`;
-
-//     const whatsappNumber = "919494942894"; // ← your number
-//     const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-//       message
-//     )}`;
-
-//     window.open(url, "_blank");
-//   };
-
-//   return (
-//     <section className={styles.section} id="form">
-//       <div className={styles.container}>
-//         {/* LEFT */}
-//         <div className={styles.benefits}>
-//           <h3>Get Your Free Brochure & Plot Details</h3>
-//           <ul>
-//             <li>✔ NMRDA Approved Layouts</li>
-//             <li>✔ Transparent Pricing</li>
-//             <li>✔ Free Site Visit</li>
-//             <li>✔ Expert Guidance</li>
-//           </ul>
-//         </div>
-
-//         {/* RIGHT */}
-//         <form className={styles.form} onSubmit={handleSubmit}>
-//           <input
-//             type="text"
-//             name="name"
-//             placeholder="Full Name *"
-//             value={form.name}
-//             onChange={handleChange}
-//             required
-//           />
-
-//           <input
-//             type="tel"
-//             name="phone"
-//             placeholder="Phone Number *"
-//             value={form.phone}
-//             onChange={handleChange}
-//             required
-//           />
-
-//           <select name="area" value={form.area} onChange={handleChange}>
-//             <option value="">Preferred Area / Project</option>
-//             <option>Hingna</option>
-//             <option>Kalmeshwar</option>
-//             <option>Chicholi</option>
-//             <option>Fetri</option>
-//             <option>Khadgaon</option>
-//             <option>Kamptee</option>
-//             <option>Nagpur</option>
-//             <option>Chhindwara</option>
-//             <option>Godhni</option>
-//             <option>Lonara</option>
-//             <option>Lava</option>
-//           </select>
-
-//           <div className={styles.radioGroup}>
-//             <label>
-//               <input
-//                 type="radio"
-//                 name="time"
-//                 value="Morning"
-//                 checked={form.time === "Morning"}
-//                 onChange={handleChange}
-//                 style={{color:"black"}}
-//               />
-//               Morning
-//             </label>
-//             <label>
-//               <input
-//                 type="radio"
-//                 name="time"
-//                 value="Afternoon"
-//                 checked={form.time === "Afternoon"}
-//                 onChange={handleChange}
-//                 style={{color:"black"}}
-//               />
-//               Afternoon
-//             </label>
-//             <label>
-//               <input
-//                 type="radio"
-//                 name="time"
-//                 value="Evening"
-//                 checked={form.time === "Evening"}
-//                 onChange={handleChange}
-//                 style={{color:"black"}}
-//               />
-//               Evening
-//             </label>
-//           </div>
-
-//           <label className={styles.checkbox}>
-//             <input
-//               type="checkbox"
-//               name="whatsappConsent"
-//               checked={form.whatsappConsent}
-//               onChange={handleChange}
-//             />
-//             Contact me on WhatsApp too
-//           </label>
-
-//           <button type="submit" className={styles.cta}>
-//             Get Details Now
-//           </button>
-//         </form>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default LeadForm;
 import React, { useState } from "react";
 import styles from "./LeadForm.module.css";
 
@@ -153,17 +5,69 @@ const LeadForm = () => {
   const [form, setForm] = useState({
     name: "", phone: "", area: "", time: "Morning", whatsappConsent: true,
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', null
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setForm({ ...form, [name]: type === "checkbox" ? checked : value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.name || !form.phone) { alert("Please fill required fields"); return; }
-    const message = `Hello, I'm interested in plot details.\n\nName: ${form.name}\nPhone: ${form.phone}\nPreferred Area: ${form.area || "Not specified"}\nBest Time to Call: ${form.time}\nWhatsApp Contact: ${form.whatsappConsent ? "Yes" : "No"}\n\nPlease share brochure & pricing details.`;
-    window.open(`https://wa.me/919494942894?text=${encodeURIComponent(message)}`, "_blank");
+    
+    // Validation
+    if (!form.name || !form.phone) { 
+      alert("Please fill required fields"); 
+      return; 
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      // Prepare data for API
+      const apiData = {
+        fullName: form.name,
+        phoneNumber: form.phone,
+        preferredAreaOrProject: form.area || "Saraswati Nagari 2",
+        bestTimeToCall: form.time
+      };
+
+      // POST to API
+      const response = await fetch('https://api.sgroup.space/free-consultation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(apiData)
+      });
+
+      // Handle response
+      if (response.ok) {
+        const result = await response.json();
+        console.log('API Success:', result);
+        setSubmitStatus('success');
+        alert("Consultation scheduled successfully!");
+        
+        // Optional: Reset form after successful submission
+        setForm({
+          name: "", phone: "", area: "", time: "Morning", whatsappConsent: true,
+        });
+      } else {
+        // Handle API error
+        const errorText = await response.text();
+        console.error('API Error:', response.status, errorText);
+        setSubmitStatus('error');
+        alert(`Server error (${response.status}). Please try again or contact support.`);
+      }
+    } catch (error) {
+      console.error('Network Error:', error);
+      setSubmitStatus('error');
+      alert("Network error. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -206,7 +110,6 @@ const LeadForm = () => {
         <div className={styles.right}>
           <p className={styles.formTitle}>Schedule a Free Consultation</p>
          
-
           <form onSubmit={handleSubmit}>
             <div className={styles.row}>
               <div className={styles.field}>
@@ -250,9 +153,21 @@ const LeadForm = () => {
               Contact me on WhatsApp too
             </label>
 
-            <button type="submit" className={styles.cta}>Get Details Now →</button>
+            <button type="submit" className={styles.cta} disabled={isSubmitting}>
+              {isSubmitting ? "Submitting..." : "Schedule Consultation →"}
+            </button>
 
-            
+            {/* Optional: Show status message */}
+            {submitStatus === 'success' && (
+              <p style={{ color: 'green', marginTop: '10px' }}>
+                ✓ Consultation scheduled successfully!
+              </p>
+            )}
+            {submitStatus === 'error' && (
+              <p style={{ color: 'red', marginTop: '10px' }}>
+                ✗ Submission failed. Please try again.
+              </p>
+            )}
           </form>
         </div>
 
