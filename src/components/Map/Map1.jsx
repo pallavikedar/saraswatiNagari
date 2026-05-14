@@ -1513,19 +1513,19 @@ const plots = [
 const generateData = () => {
   const entries = [];
   for (let i = 1; i <= 104; i++) {
-    let type = "Standard Lot";
-    if ([30, 60, 90, 104].includes(i)) type = "Corner Lot";
-    // Randomize status for demo - replace with actual data as needed
-    let status = "available";
-    if (i % 5 === 0) status = "sold";
-    else if (i % 7 === 0) status = "reserved";
-    else status = "available";
+    let type = "Standard Plot";
+    // if (i === 1) type = "Corner Plot";
+    // if (i === 30) type = "Corner Plot";
+    // if (i === 60) type = "Corner Plot";
+    // if (i === 90) type = "Corner Plot";
+    // if (i === 104) type = "Corner Plot";
     
     entries.push({ 
       id: i, 
       price: "₹3,000", 
+      oldPrice: "₹1,300",
       type, 
-      status, 
+      status: "sold",  // ALL PLOTS ARE SOLD
       size: "30×40 ft",
       plotArea: "1200 sq.ft",
       facing: i % 2 === 0 ? "East" : "North"

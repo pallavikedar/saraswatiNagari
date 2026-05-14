@@ -134,6 +134,21 @@ const STYLES = `
   .pm-leg-dot.available { background: var(--available); }
   .pm-leg-dot.open      { background: var(--open); }
 
+  /* ── Status Banner ── */
+  .pm-status-banner {
+    background: linear-gradient(135deg, #2eaa72, #1a7a4a);
+    color: white;
+    text-align: center;
+    padding: 0.6rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
   /* ── Stats Bar ── */
   .pm-stats {
     background: var(--ink-mid);
@@ -471,6 +486,20 @@ const STYLES = `
   .pm-badge.available { background: var(--available-bg); color: var(--available); }
   .pm-badge.open      { background: var(--open-bg);      color: var(--open); }
 
+  /* ── Commercial Badge ── */
+  .pm-commercial-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+    font-size: 0.55rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 100px;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+
   /* ── Modal ── */
   .pm-overlay {
     position: fixed;
@@ -721,62 +750,63 @@ const plotsPositions = [
   { id: 30, top: "35%", left: "91.2%", width: "3.5%", height: "23%" },
 ];
 
-// ─── Plot Data (54 plots as per your original) ───────────────────────────────
+// ─── Plot Data (54 plots total - 5 Commercial available, rest sold) ─────────
+// Status: Ongoing | Remaining Plots: 4,5,6,7,8 (Commercial)
 const plotData = [
-  { id: 1,  price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
-  { id: 2,  price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
-  { id: 3,  price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
-  { id: 4,  price: "₹3,000", type: "Standard Lot", status: "available", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
-  { id: 5,  price: "₹3,000", type: "Standard Lot", status: "available", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
-  { id: 6,  price: "₹3,000", type: "Standard Lot", status: "available", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "West" },
-  { id: 7,  price: "₹3,000", type: "Standard Lot", status: "available", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
-  { id: 8,  price: "₹3,000", type: "Standard Lot", status: "available", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
-  { id: 9,  price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "South" },
-  { id: 10, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
-  { id: 11, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
-  { id: 12, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "West" },
-  { id: 13, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
-  { id: 14, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
-  { id: 15, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "South" },
-  { id: 16, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
-  { id: 17, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "West" },
-  { id: 18, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
-  { id: 19, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
-  { id: 20, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "South" },
-  { id: 21, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
-  { id: 22, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
-  { id: 23, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "West" },
-  { id: 24, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
-  { id: 25, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
-  { id: 26, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "South" },
-  { id: 27, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
-  { id: 28, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "West" },
-  { id: 29, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
-  { id: 30, price: "₹3,500", type: "Corner Lot", status: "sold", size: "35×45 ft", plotArea: "1575 sq.ft", facing: "East" },
-  { id: 31, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
-  { id: 32, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
-  { id: 33, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "South" },
-  { id: 34, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "West" },
-  { id: 35, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
-  { id: 36, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
-  { id: 37, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "South" },
-  { id: 38, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "West" },
-  { id: 39, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
-  { id: 40, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
-  { id: 41, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "South" },
-  { id: 42, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "West" },
-  { id: 43, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
-  { id: 44, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
-  { id: 45, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "South" },
-  { id: 46, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "West" },
-  { id: 47, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
-  { id: 48, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
-  { id: 49, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "South" },
-  { id: 50, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "West" },
-  { id: 51, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
-  { id: 52, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
-  { id: 53, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "South" },
-  { id: 54, price: "₹3,000", type: "Standard Lot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "West" },
+  { id: 1,  price: "₹3,500", type: "Residential Plot", status: "sold", size: "40×60 ft", plotArea: "2400 sq.ft", facing: "East" },
+  { id: 2,  price: "₹3,500", type: "Residential Plot", status: "sold", size: "40×60 ft", plotArea: "2400 sq.ft", facing: "North" },
+  { id: 3,  price: "₹3,500", type: "Residential Plot", status: "sold", size: "40×60 ft", plotArea: "2400 sq.ft", facing: "East" },
+  { id: 4,  price: "₹3,500", type: "Residential Plot", status: "available", size: "40×60 ft", plotArea: "2400 sq.ft", facing: "North" },
+  { id: 5,  price: "₹3,500", type: "Residential Plot", status: "available", size: "40×60 ft", plotArea: "2400 sq.ft", facing: "East" },
+  { id: 6,  price: "₹3,500", type: "Residential Plot", status: "available", size: "40×60 ft", plotArea: "2400 sq.ft", facing: "West" },
+  { id: 7,  price: "₹3,500", type: "Residential Plot", status: "available", size: "40×60 ft", plotArea: "2400 sq.ft", facing: "North" },
+  { id: 8,  price: "₹3,500", type: "Commercial Plot", status: "available", size: "40×60 ft", plotArea: "2400 sq.ft", facing: "East" },
+  { id: 9,  price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "South" },
+  { id: 10, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
+  { id: 11, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
+  { id: 12, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "West" },
+  { id: 13, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
+  { id: 14, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
+  { id: 15, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "South" },
+  { id: 16, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
+  { id: 17, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "West" },
+  { id: 18, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
+  { id: 19, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
+  { id: 20, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "South" },
+  { id: 21, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
+  { id: 22, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
+  { id: 23, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "West" },
+  { id: 24, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
+  { id: 25, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
+  { id: 26, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "South" },
+  { id: 27, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
+  { id: 28, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "West" },
+  { id: 29, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
+  { id: 30, price: "₹3,200", type: "Corner Plot", status: "sold", size: "35×45 ft", plotArea: "1575 sq.ft", facing: "East" },
+  { id: 31, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
+  { id: 32, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
+  { id: 33, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "South" },
+  { id: 34, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "West" },
+  { id: 35, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
+  { id: 36, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
+  { id: 37, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "South" },
+  { id: 38, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "West" },
+  { id: 39, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
+  { id: 40, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
+  { id: 41, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "South" },
+  { id: 42, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "West" },
+  { id: 43, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
+  { id: 44, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
+  { id: 45, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "South" },
+  { id: 46, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "West" },
+  { id: 47, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
+  { id: 48, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
+  { id: 49, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "South" },
+  { id: 50, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "West" },
+  { id: 51, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "North" },
+  { id: 52, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "East" },
+  { id: 53, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "South" },
+  { id: 54, price: "₹2,800", type: "Residential Plot", status: "sold", size: "30×40 ft", plotArea: "1200 sq.ft", facing: "West" },
 ];
 
 // Add Open Space entry
@@ -888,24 +918,22 @@ const Map2 = () => {
     return acc;
   }, {});
 
+  // Check if a plot is commercial (ids 1-8)
+  const isCommercial = (id) => {
+    return id >= 1 && id <= 8 && id !== "Open Space";
+  };
+
   return (
     <div className="pm-root">
+      {/* Status Banner - Ongoing with remaining plots info */}
+      {/* <div className="pm-status-banner">
+        <span>🏗️ Status: <strong>ONGOING</strong></span>
+        <span>💎 Remaining Commercial Plots: <strong>4, 5, 6, 7, 8</strong></span>
+        <span>📞 For bookings: <strong>+91 94949 42894</strong></span>
+      </div> */}
+
       {/* Header with Legend */}
-      <div className="pm-header">
-        <div className="pm-brand">
-          <div className="pm-brand-icon">🏘️</div>
-          <div>
-            <div className="pm-brand-name">{PROJECT_NAME}</div>
-            <div className="pm-brand-sub">Premium Layout | RERA Approved</div>
-          </div>
-        </div>
-        <div className="pm-legend">
-          <div className="pm-leg-item"><div className="pm-leg-dot sold"></div><span>Sold/Booked</span></div>
-          <div className="pm-leg-item"><div className="pm-leg-dot reserved"></div><span>Reserved</span></div>
-          <div className="pm-leg-item"><div className="pm-leg-dot available"></div><span>Available</span></div>
-          <div className="pm-leg-item"><div className="pm-leg-dot open"></div><span>Open Space</span></div>
-        </div>
-      </div>
+      
 
       {/* Stats Bar */}
       <div className="pm-stats">
@@ -914,6 +942,7 @@ const Map2 = () => {
         <div className="pm-stat">Reserved <span className="pm-stat-val" style={{ marginLeft: 6, color: "#d4b472" }}>{counts.reserved || 0}</span></div>
         <div className="pm-stat">Available <span className="pm-stat-val" style={{ marginLeft: 6, color: "#6ecfa6" }}>{counts.available || 0}</span></div>
         <div className="pm-stat">Open Space <span className="pm-stat-val" style={{ marginLeft: 6, color: "#7aa9e0" }}>{counts.open || 0}</span></div>
+        <div className="pm-stat">🏪 Commercial <span className="pm-stat-val" style={{ marginLeft: 6, color: "#f59e0b" }}>5 Available</span></div>
       </div>
 
       {/* Body */}
@@ -949,29 +978,7 @@ const Map2 = () => {
                   className="pm-map-img"
                 />
                 {/* Render interactive plot buttons over the image */}
-                {plotsPositions.map((plot) => {
-                  const plotData = getPlotData(plot.id);
-                  const status = plotData?.status || "available";
-                  const isSelected = selectedId === plot.id;
-                  
-                  return (
-                    <button
-                      key={plot.id}
-                      className={`pm-plot-btn ${status} ${isSelected ? "pm-selected" : ""}`}
-                      style={{
-                        top: plot.top,
-                        left: plot.left,
-                        width: plot.width,
-                        height: plot.height,
-                        position: "absolute",
-                      }}
-                      onClick={() => handlePlotClick(plot.id)}
-                      title={`Plot #${plot.id} — ${status.toUpperCase()}`}
-                    >
-                      {plot.id}
-                    </button>
-                  );
-                })}
+                
               </div>
             </div>
           </div>
@@ -981,22 +988,27 @@ const Map2 = () => {
         <div className="pm-status-panel">
           <div className="pm-panel-header">
             <div className="pm-panel-icon">📋</div>
-            Plot Portfolio
+            Plot Portfolio {counts.available > 0 && `— ${counts.available} Available`}
           </div>
           <div className="pm-status-grid">
             {completeData.map((plot) => {
               const isSelected = selectedId === plot.id;
               const plotId = plot.id === "Open Space" ? "OS" : plot.id;
+              const isCommercialPlot = plot.id !== "Open Space" && plot.id >= 1 && plot.id <= 8;
+              
               return (
                 <div
                   key={plot.id}
                   className={`pm-card ${plot.status}${isSelected ? " pm-card-sel" : ""}`}
                   onClick={() => handlePlotClick(plot.id)}
                 >
-                  <div className="pm-card-num">{plot.id === "Open Space" ? "🏞️ OS" : `${plotId}`}</div>
-                  <div className="pm-card-type">{plot.type}</div>
+                  <div className="pm-card-num">
+                    {plot.id === "Open Space" ? "🏞️ OS" : `${plotId}`}
+                    {/* {isCommercialPlot && <span className="pm-commercial-badge">COM</span>} */}
+                  </div>
+                  {/* <div className="pm-card-type">{plot.type}</div>
                   {plot.price !== "N/A" && <div className="pm-card-price">{plot.price}</div>}
-                  <span className={`pm-badge ${plot.status}`}>{plot.status}</span>
+                  <span className={`pm-badge ${plot.status}`}>{plot.status}</span> */}
                 </div>
               );
             })}
@@ -1012,6 +1024,9 @@ const Map2 = () => {
               <button className="pm-modal-close" onClick={closeModal}>✕</button>
               <div className="pm-modal-plot-label">
                 {STATUS_ICON[selectedPlotData.status]} Plot Details
+                {selectedPlotData.id >= 1 && selectedPlotData.id <= 8 && selectedPlotData.id !== "Open Space" && (
+                  <span className="pm-commercial-badge" style={{ marginLeft: "8px", fontSize: "0.65rem" }}>COMMERCIAL</span>
+                )}
               </div>
               <div className="pm-modal-title">
                 {selectedPlotData.id === "Open Space"
@@ -1051,7 +1066,7 @@ const Map2 = () => {
                 </div>
               )}
               <div className="pm-detail-row">
-                <span className="pm-detail-label">Price</span>
+                <span className="pm-detail-label">Price (per sq.ft)</span>
                 <span className="pm-detail-val price-val">
                   {selectedPlotData.price === "N/A" ? "Not for Sale" : selectedPlotData.price}
                 </span>
@@ -1064,6 +1079,8 @@ const Map2 = () => {
                   ? "🌿 This area is designated as open space / green zone and is not available for purchase."
                   : selectedPlotData.status === "reserved"
                   ? "⏳ This plot is currently under reservation. Contact us for availability updates."
+                  : selectedPlotData.id >= 1 && selectedPlotData.id <= 8
+                  ? "✅ This premium COMMERCIAL plot is ready for immediate purchase! Prime location with high footfall and excellent investment potential. Flexible payment plans available."
                   : "✅ This premium plot is ready for immediate purchase! Get the best deals with flexible payment plans."}
                 {" "}For inquiries call <strong>+91 94949 42894</strong>.
               </div>
@@ -1085,6 +1102,3 @@ const Map2 = () => {
 };
 
 export default Map2;
-
-
-

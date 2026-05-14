@@ -94,10 +94,10 @@ const Contact = () => {
       {/* Hero Banner */}
       <motion.div
         className={styles.banner}
-        style={{ backgroundImage: `url(${homeImage})` }}
+        // style={{ backgroundImage: `url(${homeImage})` }}
         variants={bannerVariants}
       >
-        <motion.div className={styles.bannerOverlay} />
+        {/* <motion.div className={styles.bannerOverlay} />
         <motion.div className={styles.bannerContent} variants={itemVariants}>
           <motion.h1 variants={itemVariants}>Get In Touch</motion.h1>
           <motion.p variants={itemVariants}>
@@ -110,7 +110,7 @@ const Contact = () => {
           >
             <MdArrowForward />
           </motion.div>
-        </motion.div>
+        </motion.div> */}
       </motion.div>
 
       {/* FAQ Section - FIRST */}

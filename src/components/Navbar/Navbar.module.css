@@ -205,3 +205,30 @@
     padding-top: 60px;
   }
 }
+/* Active tab styling */
+.navLinks li span.active,
+.navLinks li a.active {
+  color: #ff6b35; /* Change to your desired active color */
+  position: relative;
+}
+
+/* Optional: Add underline effect for active tab */
+.navLinks li span.active::after,
+.navLinks li a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #ff6b35;
+  border-radius: 2px;
+}
+
+/* Mobile menu active state */
+@media (max-width: 768px) {
+  .navLinks li span.active::after,
+  .navLinks li a.active::after {
+    bottom: -8px;
+  }
+}

@@ -8,8 +8,8 @@
 /* Hero Banner */
 .banner {
   position: relative;
-  height: 60vh;
-  min-height: 500px;
+  height: 30px;
+  /* min-height: 500px; */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;

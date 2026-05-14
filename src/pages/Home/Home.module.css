@@ -1,6 +1,39 @@
 /* ═══════════════════════════════════════════════
    HOME — Fully Responsive & Clean CSS
 ═══════════════════════════════════════════════ */
+.imageSpinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(215, 152, 78, 0.3);
+  border-top-color: #d7984e;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.fastImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.fastImageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.2s ease;
+}
+
+.fastImageWrapper img.loading {
+  filter: blur(10px);
+  transform: scale(1.05);
+}
+
+.fastImageWrapper img.loaded {
+  filter: blur(0);
+  transform: scale(1);
+}
+
 
 /* ── Loader & Spinner ── */
 .sectionLoader {
@@ -21,20 +54,223 @@
   to { transform: rotate(360deg); }
 }
 
-.skeleton {
+/* ═══════════════════════════════════════════════════════════════
+   PASTE EVERYTHING BELOW INTO YOUR Home.module.css
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Keyframes ── */
+@keyframes shimmerSlide {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(300%); }
+}
+@keyframes scanLine {
+  0%   { transform: translateY(-100%); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(800%); opacity: 0; }
+}
+@keyframes breatheGold {
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 0.7; }
+}
+
+/* ── Hero Video Skeleton ── */
+.videoContainer {
+  position: relative;
   width: 100%;
-  height: 220px;
-  background: linear-gradient(90deg, #2b2b2b 25%, #3a3a3a 50%, #2b2b2b 75%);
-  background-size: 400% 100%;
-  animation: skeletonShimmer 1.5s infinite linear;
-  border-radius: 10px;
+  height: 100%;
+  overflow: hidden;
 }
 
-@keyframes skeletonShimmer {
-  0% { background-position: -400px 0; }
-  100% { background-position: 400px 0; }
+.videoSkeleton {
+  position: absolute;
+  inset: 0;
+  background: #0d0d18;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;           /* sits above the video until it's ready */
+  overflow: hidden;
 }
 
+.videoGridBg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(212,175,55,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,175,55,0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.videoScanLine {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent);
+  animation: scanLine 3s ease-in-out infinite;
+}
+
+/* Corner brackets */
+.videoCorner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: rgba(212,175,55,0.5);
+  border-style: solid;
+}
+.videoCorner.tl { top: 14px;    left: 14px;  border-width: 2px 0 0 2px; }
+.videoCorner.tr { top: 14px;    right: 14px; border-width: 2px 2px 0 0; }
+.videoCorner.bl { bottom: 14px; left: 14px;  border-width: 0 0 2px 2px; }
+.videoCorner.br { bottom: 14px; right: 14px; border-width: 0 2px 2px 0; }
+
+/* Animated play ring */
+.videoPlayRing {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(212,175,55,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation: breatheGold 2s ease-in-out infinite;
+  z-index: 1;
+}
+.videoPlayRing::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  border: 1px solid rgba(212,175,55,0.2);
+  animation: breatheGold 2s 0.5s ease-in-out infinite;
+}
+.videoPlayRing::after {
+  content: '';
+  position: absolute;
+  inset: -24px;
+  border-radius: 50%;
+  border: 0.5px solid rgba(212,175,55,0.1);
+  animation: breatheGold 2s 1s ease-in-out infinite;
+}
+
+.videoPlayTri {
+  width: 0;
+  height: 0;
+  border-left: 18px solid rgba(212,175,55,0.65);
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+  margin-left: 6px;
+}
+
+.videoLoadingLabel {
+  position: absolute;
+  bottom: 18px;
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(212,175,55,0.4);
+}
+
+/* ── Layout Card Image Skeleton ── */
+.cardImgSkeleton {
+  position: absolute;
+  inset: 0;
+  background: #111018;
+  overflow: hidden;
+  border-radius: inherit;   /* match parent card corners */
+}
+
+/* shimmer sweep */
+.cardImgSkeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(212,175,55,0.18) 50%,
+    transparent 100%
+  );
+  animation: shimmerSlide 2s ease-in-out infinite;
+}
+
+.cardImgPlotIcon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plotIconBox {
+  width: 48px;
+  height: 36px;
+  border: 1px solid rgba(212,175,55,0.25);
+  position: relative;
+}
+/* vertical divider */
+.plotIconBox::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  background: rgba(212,175,55,0.18);
+}
+/* horizontal divider */
+.plotIconBox::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 1px;
+  background: rgba(212,175,55,0.18);
+}
+
+/* ── Amenity Card Skeleton ── */
+.amenityCardSkeleton {
+  background: rgba(212,175,55,0.04);
+  border: 0.5px solid rgba(212,175,55,0.15);
+  border-radius: 8px;
+  padding: 18px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.amenityIconSkel {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(212,175,55,0.3);
+  background: rgba(212,175,55,0.07);
+  animation: breatheGold 2.5s ease-in-out infinite;
+}
+
+.amenityLabelSkel {
+  height: 10px;
+  width: 65%;
+  border-radius: 3px;
+  background: #1a160a;
+  position: relative;
+  overflow: hidden;
+}
+.amenityLabelSkel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212,175,55,0.32),
+    transparent
+  );
+  animation: shimmerSlide 2s ease-in-out infinite;
+}
 /* ── Home Container ── */
 .homeContainer {
   font-family: 'Sora', sans-serif;

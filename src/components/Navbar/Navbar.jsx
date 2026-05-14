@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 import logo from "../../assets/logo.png";
 import styles from "./Navbar.module.css";
-import { useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   /* ── Scroll detection ── */
   useEffect(() => {
@@ -38,11 +38,46 @@ const Navbar = () => {
     setMenuOpen(false);
   }, [location.pathname]);
 
+  /* ── Track active section based on scroll (only on home page) ── */
+  useEffect(() => {
+    if (location.pathname !== "/") return;
+
+    const sections = ["home", "about", "layout"];
+    const observerOptions = {
+      threshold: 0.3,
+      rootMargin: "-80px 0px 0px 0px"
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id;
+          setActiveSection(sectionId);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    
+    sections.forEach((sectionId) => {
+      const element = document.getElementById(sectionId);
+      if (element) observer.observe(element);
+    });
+
+    return () => {
+      sections.forEach((sectionId) => {
+        const element = document.getElementById(sectionId);
+        if (element) observer.unobserve(element);
+      });
+    };
+  }, [location.pathname]);
+
   const closeMenu = useCallback(() => setMenuOpen(false), []);
 
   /* ── Scroll to section (works cross-page) ── */
   const handleSectionClick = useCallback(
     (sectionId) => {
+      setActiveSection(sectionId);
       closeMenu();
       if (location.pathname === "/") {
         const el = document.getElementById(sectionId);
@@ -58,6 +93,20 @@ const Navbar = () => {
     [location.pathname, navigate, closeMenu]
   );
 
+  /* ── Helper to check if a route/section is active ── */
+  const isActive = (item) => {
+    if (item === "home" || item === "about" || item === "layout") {
+      return location.pathname === "/" && activeSection === item;
+    }
+    if (item === "gallery") {
+      return location.pathname === "/gallery";
+    }
+    if (item === "contact") {
+      return location.pathname === "/contact";
+    }
+    return false;
+  };
+
   return (
     <>
       {/* ── Navbar bar ── */}
@@ -67,7 +116,7 @@ const Navbar = () => {
           {/* Logo */}
           <div
             className={styles.logo}
-            onClick={() => { navigate("/"); closeMenu(); }}
+            onClick={() => { navigate("/"); closeMenu(); setActiveSection("home"); }}
             role="button"
             tabIndex={0}
             onKeyDown={(e) => e.key === "Enter" && navigate("/")}
@@ -92,19 +141,46 @@ const Navbar = () => {
             className={`${styles.navLinks} ${menuOpen ? styles.show : ""}`}
           >
             <li>
-              <span onClick={() => handleSectionClick("home")}>Home</span>
+              <span 
+                onClick={() => handleSectionClick("home")}
+                className={isActive("home") ? styles.active : ""}
+              >
+                Home
+              </span>
             </li>
             <li>
-              <span onClick={() => handleSectionClick("about")}>About Us</span>
+              <span 
+                onClick={() => handleSectionClick("about")}
+                className={isActive("about") ? styles.active : ""}
+              >
+                About Us
+              </span>
             </li>
             <li>
-              <span onClick={() => handleSectionClick("layout")}>Projects</span>
+              <span 
+                onClick={() => handleSectionClick("layout")}
+                className={isActive("layout") ? styles.active : ""}
+              >
+                Projects
+              </span>
             </li>
             <li>
-              <Link to="/gallery" onClick={closeMenu}>Gallery</Link>
+              <Link 
+                to="/gallery" 
+                onClick={closeMenu}
+                className={isActive("gallery") ? styles.active : ""}
+              >
+                Gallery
+              </Link>
             </li>
             <li>
-              <Link to="/contact" onClick={closeMenu}>Contact Us</Link>
+              <Link 
+                to="/contact" 
+                onClick={closeMenu}
+                className={isActive("contact") ? styles.active : ""}
+              >
+                Contact Us
+              </Link>
             </li>
           </ul>
 
