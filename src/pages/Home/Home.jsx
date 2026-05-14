@@ -1083,7 +1083,7 @@ const Home = () => {
             >
               <source src={VIDEO_URL} type="video/mp4" />
             </video>
-
+            
            <motion.div
               className={styles.overlay1}
               variants={overlaySlide}
@@ -1119,7 +1119,7 @@ const Home = () => {
               </motion.section>
             </motion.div>
           </div>
-          
+           
         </LazySection>
       </Suspense>
 
