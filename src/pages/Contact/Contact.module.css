@@ -9,7 +9,6 @@
 .banner {
   position: relative;
   height: 30px;
-  /* min-height: 500px; */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -34,18 +33,18 @@
   color: white;
   z-index: 2;
   max-width: 800px;
-  padding: 0 2rem;
+  padding: 0 clamp(1rem, 4vw, 2rem);
 }
 
 .bannerContent h1 {
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
 }
 
 .bannerContent p {
-  font-size: 1.2rem;
+  font-size: clamp(0.9rem, 3vw, 1.2rem);
   opacity: 0.95;
   margin-bottom: 2rem;
 }
@@ -58,23 +57,23 @@
 /* FAQ Section - First */
 .faqSection {
   background: linear-gradient(135deg, #faf9f8 0%, #ffffff 100%);
-  padding: 5rem 2rem;
+  padding: clamp(2rem, 6vw, 5rem) clamp(1rem, 4vw, 2rem);
 }
 
 .faqHeader {
   text-align: center;
   max-width: 800px;
-  margin: 0 auto 3rem;
+  margin: 0 auto clamp(2rem, 5vw, 3rem);
 }
 
 .faqIcon {
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   color: #B8860B;
   margin-bottom: 1rem;
 }
 
 .faqHeader h2 {
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
   color: #1a1a1a;
   margin-bottom: 1rem;
   font-weight: 700;
@@ -82,21 +81,21 @@
 
 .faqHeader p {
   color: #666;
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
 }
 
 .faqGrid {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+  gap: clamp(1rem, 3vw, 2rem);
 }
 
 .faqCard {
   background: white;
   border-radius: 16px;
-  padding: 1.8rem;
+  padding: clamp(1.2rem, 4vw, 1.8rem);
   box-shadow: 0 5px 20px rgba(0,0,0,0.05);
   transition: all 0.3s ease;
   border: 1px solid #f0f0f0;
@@ -110,37 +109,40 @@
 }
 
 .faqQuestionIcon {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
   color: #B8860B;
+  flex-shrink: 0;
 }
 
 .faqQuestion h4 {
-  font-size: 1.1rem;
+  font-size: clamp(0.95rem, 3vw, 1.1rem);
   color: #1a1a1a;
   margin: 0;
   font-weight: 600;
+  line-height: 1.4;
 }
 
 .faqAnswer {
   color: #666;
   line-height: 1.6;
-  margin-left: 2.5rem;
+  margin-left: 0;
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
 }
 
 /* Contact Info Section - Second */
 .contactInfoSection {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 5rem 2rem;
+  padding: clamp(2rem, 6vw, 5rem) clamp(1rem, 4vw, 2rem);
 }
 
 .sectionHeader {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
 }
 
 .sectionHeader h2 {
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
   color: #1a1a1a;
   margin-bottom: 0.5rem;
   font-weight: 700;
@@ -148,28 +150,31 @@
 
 .sectionHeader p {
   color: #666;
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
 }
 
 .infoGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: clamp(1rem, 3vw, 2rem);
 }
 
 .infoCard {
   background: white;
   border-radius: 20px;
-  padding: 2rem;
+  padding: clamp(1.5rem, 4vw, 2rem);
   text-align: center;
   box-shadow: 0 10px 40px rgba(0,0,0,0.08);
   transition: all 0.3s ease;
   border: 1px solid #f0f0f0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .cardIconWrapper {
-  width: 70px;
-  height: 70px;
+  width: clamp(55px, 12vw, 70px);
+  height: clamp(55px, 12vw, 70px);
   background: linear-gradient(135deg, #B8860B, #DAA520);
   border-radius: 50%;
   display: flex;
@@ -179,12 +184,12 @@
 }
 
 .cardIcon {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 4vw, 2rem);
   color: white;
 }
 
 .infoCard h3 {
-  font-size: 1.3rem;
+  font-size: clamp(1.1rem, 4vw, 1.3rem);
   color: #1a1a1a;
   margin-bottom: 1rem;
   font-weight: 600;
@@ -192,6 +197,7 @@
 
 .contactDetails {
   margin: 1rem 0;
+  flex: 1;
 }
 
 .contactLink {
@@ -200,7 +206,8 @@
   text-decoration: none;
   padding: 0.5rem 0;
   transition: color 0.3s ease;
-  font-size: 1rem;
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
+  word-break: break-word;
 }
 
 .contactLink:hover {
@@ -215,15 +222,17 @@
   padding: 0.5rem 1rem;
   border-radius: 50px;
   margin-top: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .whatsappIcon {
   color: #25D366;
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 3vw, 1.2rem);
 }
 
 .whatsappGroup span {
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 2.5vw, 0.9rem);
   color: #666;
 }
 
@@ -234,6 +243,7 @@
   margin-top: 1rem;
   font-weight: 500;
   transition: transform 0.3s ease;
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
 }
 
 .mapLink:hover {
@@ -243,9 +253,11 @@
 .emailLink {
   color: #B8860B;
   text-decoration: none;
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
   font-weight: 500;
   transition: color 0.3s ease;
+  word-break: break-word;
+  display: inline-block;
 }
 
 .emailLink:hover {
@@ -253,7 +265,7 @@
 }
 
 .emailNote {
-  font-size: 0.85rem;
+  font-size: clamp(0.75rem, 2vw, 0.85rem);
   color: #999;
   margin-top: 0.5rem;
 }
@@ -268,27 +280,32 @@
   justify-content: space-between;
   padding: 0.5rem 0;
   border-bottom: 1px solid #f0f0f0;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .hourItem span {
   color: #666;
+  font-size: clamp(0.8rem, 2.5vw, 0.9rem);
 }
 
 .hourItem strong {
   color: #1a1a1a;
+  font-size: clamp(0.8rem, 2.5vw, 0.9rem);
 }
 
 .city {
   font-weight: 600;
   color: #B8860B;
   margin-top: 0.5rem;
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
 }
 
 /* Map Section - Third */
 .mapSection {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 2rem 5rem 2rem;
+  padding: 0 clamp(1rem, 4vw, 2rem) clamp(2rem, 6vw, 5rem) clamp(1rem, 4vw, 2rem);
 }
 
 .mapContainer {
@@ -299,13 +316,13 @@
 }
 
 .mapHeader {
-  padding: 1.5rem;
+  padding: clamp(1rem, 3vw, 1.5rem);
   background: #fafafa;
   border-bottom: 1px solid #e0e0e0;
 }
 
 .mapHeader h3 {
-  font-size: 1.3rem;
+  font-size: clamp(1.1rem, 4vw, 1.3rem);
   color: #1a1a1a;
   margin-bottom: 0.25rem;
   font-weight: 600;
@@ -313,19 +330,19 @@
 
 .mapHeader p {
   color: #666;
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 2.5vw, 0.9rem);
 }
 
 .mapIframe {
   width: 100%;
-  height: 450px;
+  height: clamp(280px, 40vh, 450px);
   display: block;
 }
 
 /* CTA Banner */
 .ctaBanner {
   background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-  padding: 5rem 2rem;
+  padding: clamp(2rem, 8vw, 5rem) clamp(1rem, 4vw, 2rem);
 }
 
 .ctaContent {
@@ -335,15 +352,16 @@
 }
 
 .ctaContent h3 {
-  font-size: 2rem;
+  font-size: clamp(1.3rem, 5vw, 2rem);
   color: white;
   margin-bottom: 1rem;
   font-weight: 700;
+  line-height: 1.3;
 }
 
 .ctaContent p {
   color: #ccc;
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
   margin-bottom: 2rem;
 }
 
@@ -359,11 +377,12 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 1rem 2rem;
+  padding: clamp(0.8rem, 3vw, 1rem) clamp(1.2rem, 4vw, 2rem);
   border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
   transition: all 0.3s ease;
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
 }
 
 .ctaWhatsapp {
@@ -383,38 +402,73 @@
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
+/* ========== ADVANCED RESPONSIVE BREAKPOINTS ========== */
+
+/* Large Desktop (1200px+) */
+@media (min-width: 1200px) {
   .faqGrid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .infoGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Desktop (993px - 1199px) */
+@media (min-width: 993px) and (max-width: 1199px) {
+  .faqGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .infoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablet (769px - 992px) */
+@media (min-width: 769px) and (max-width: 992px) {
+  .faqGrid {
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
   
   .infoGrid {
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
+  }
+  
+  .faqCard {
+    padding: 1.5rem;
   }
 }
 
+/* Mobile Large (481px - 768px) */
 @media (max-width: 768px) {
+  .banner {
+    height: auto;
+    min-height: 300px;
+  }
+  
   .bannerContent h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
   
   .bannerContent p {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
   
   .faqSection {
-    padding: 3rem 1.5rem;
+    padding: 2rem 1rem;
   }
   
   .faqHeader h2 {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
   
   .faqGrid {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
   
   .faqAnswer {
@@ -422,11 +476,16 @@
   }
   
   .contactInfoSection {
-    padding: 3rem 1.5rem;
+    padding: 2rem 1rem;
   }
   
   .sectionHeader h2 {
-    font-size: 2rem;
+    font-size: 1.75rem;
+  }
+  
+  .infoGrid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
   
   .infoCard {
@@ -434,11 +493,11 @@
   }
   
   .mapSection {
-    padding: 0 1.5rem 3rem 1.5rem;
+    padding: 0 1rem 2rem 1rem;
   }
   
   .mapIframe {
-    height: 350px;
+    height: 300px;
   }
   
   .ctaContent h3 {
@@ -447,35 +506,191 @@
   
   .ctaButtons {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
   }
   
   .ctaWhatsapp,
   .ctaCall {
-    width: 100%;
     justify-content: center;
+    width: 100%;
   }
 }
 
+/* Mobile Small (up to 480px) */
 @media (max-width: 480px) {
   .banner {
-    height: 50vh;
-    min-height: 400px;
+    min-height: 70px;
   }
   
   .bannerContent h1 {
-    font-size: 2rem;
+    font-size: 1.75rem;
+  }
+  
+  .bannerContent p {
+    font-size: 0.85rem;
   }
   
   .faqHeader h2 {
     font-size: 1.5rem;
   }
   
+  .faqHeader p {
+    font-size: 0.85rem;
+  }
+  
+  .faqCard {
+    padding: 1.2rem;
+  }
+  
+  .faqQuestion {
+    gap: 0.75rem;
+  }
+  
+  .faqQuestion h4 {
+    font-size: 0.9rem;
+  }
+  
+  .faqAnswer {
+    font-size: 0.8rem;
+  }
+  
   .sectionHeader h2 {
     font-size: 1.5rem;
   }
   
+  .sectionHeader p {
+    font-size: 0.85rem;
+  }
+  
+  .infoCard {
+    padding: 1.25rem;
+  }
+  
+  .cardIconWrapper {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .cardIcon {
+    font-size: 1.5rem;
+  }
+  
+  .infoCard h3 {
+    font-size: 1.1rem;
+  }
+  
+  .contactLink {
+    font-size: 0.85rem;
+  }
+  
+  .hourItem {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
   .mapIframe {
-    height: 280px;
+    height: 250px;
+  }
+  
+  .ctaContent h3 {
+    font-size: 1.25rem;
+  }
+  
+  .ctaContent p {
+    font-size: 0.85rem;
+  }
+}
+
+/* Landscape Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .banner {
+    min-height: 100px;
+  }
+  
+  .faqGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .infoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .ctaButtons {
+    flex-direction: row;
+  }
+}
+
+/* Tablet Landscape */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+  .faqGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .infoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* High Resolution Screens (2560px+) */
+@media (min-width: 2560px) {
+  .contactInfoSection,
+  .faqSection,
+  .mapSection {
+    max-width: 1800px;
+  }
+  
+  .faqGrid {
+    gap: 2.5rem;
+  }
+  
+  .infoGrid {
+    gap: 2.5rem;
+  }
+  
+  .faqCard {
+    padding: 2.5rem;
+  }
+  
+  .infoCard {
+    padding: 2.5rem;
+  }
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  .infoCard,
+  .faqCard,
+  .ctaWhatsapp,
+  .ctaCall,
+  .mapLink {
+    transition: none;
+  }
+  
+  .infoCard:hover,
+  .faqCard:hover {
+    transform: none;
+  }
+  
+  .bannerIndicator {
+    animation: none !important;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .banner {
+    height: auto;
+    min-height: auto;
+  }
+  
+  .ctaBanner,
+  .bannerIndicator {
+    display: none;
+  }
+  
+  .infoCard {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ddd;
   }
 }
