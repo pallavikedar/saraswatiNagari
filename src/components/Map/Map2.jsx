@@ -952,7 +952,7 @@ const Map2 = () => {
           <div className="pm-panel-header">
             <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
               <div className="pm-panel-icon">📍</div>
-              Interactive Master Plan — Click any plot
+              {/* Interactive Master Plan — Click any plot */}
             </div>
             {/* Zoom Controls */}
             <div className="pm-zoom-controls">
