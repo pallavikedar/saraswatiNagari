@@ -14,13 +14,13 @@ import {
   GiWaterfall,
 } from "react-icons/gi";
 // import image from '../../assets/layouts1.jpg'
-import Panorama360Viewer1 from "../../components/PanoramaViewer5";
+// import Panorama360Viewer1 from "../../components/PanoramaViewer5";
 import Map7 from "../../components/Map/Map5";
 import LazyOnScroll from "../../components/LazyOnScroll";
 
 // Lazy load heavy components
 const Map = lazy(() => import("../../components/Map/Map"));
-const PanoramaViewer = lazy(() => import("../../components/PanoramaViewer"));
+// const PanoramaViewer = lazy(() => import("../../components/PanoramaViewer"));
 
 // Professional loading component with animation
 const LoadingSpinner = () => (

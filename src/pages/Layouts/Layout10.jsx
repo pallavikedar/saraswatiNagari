@@ -15,7 +15,7 @@ const BROCHURE_PDF = "/Saraswati 11.pdf";
 const PAMPHLET_PDF = "/Pomplate.pdf";
 
 const Map = lazy(() => import("../../components/Map/Map"));
-const PanoramaViewer = lazy(() => import("../../components/PanoramaViewer"));
+// const PanoramaViewer = lazy(() => import("../../components/PanoramaViewer"));
 
 // ✅ FIX: Create LazyOnScroll component
 const LazyOnScroll = ({ children, fallback }) => {

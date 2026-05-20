@@ -18,7 +18,7 @@ import image from '../../assets/layouts1.jpg'
 
 // Lazy load heavy components
 const Map = lazy(() => import("../../components/Map/Map"));
-const PanoramaViewer = lazy(() => import("../../components/PanoramaViewer"));
+// const PanoramaViewer = lazy(() => import("../../components/PanoramaViewer"));
 
 // Professional loading component with animation
 const LoadingSpinner = () => (

@@ -19,7 +19,7 @@ import LazyOnScroll from "../../components/LazyOnScroll";
 
 // Lazy load heavy components
 // const Map = lazy(() => import("../../components/Map/Map"));
-const PanoramaViewer = lazy(() => import("../../components/PanoramaViewer"));
+// const PanoramaViewer = lazy(() => import("../../components/PanoramaViewer"));
 
 // Professional loading component with animation
 const LoadingSpinner = () => (
@@ -253,44 +253,7 @@ const Layout1 = () => {
         
       </motion.section>
 
-      {/* Virtual Tour with slide-in animation */}
-      {/* <motion.section 
-        className={styles.virtualTour}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-      >
-        <motion.h2 
-          className={styles.sectionTitle}
-          variants={slideInLeft}
-        >
-          360° Symphony of Serenity
-        </motion.h2>
-        <motion.p 
-          className={styles.virtualText}
-          variants={fadeInUp}
-        >
-          Surrender to a transcendent panorama, where every nuance of our artful designs unfolds in luminous detail— 
-          a prelude to your personal odyssey.
-        </motion.p>
-        <motion.div 
-          className={styles.virtualFrame}
-          variants={fadeInScale}
-        >
-          <LazyOnScroll fallback={<LoadingSpinner />}>
-            <PanoramaViewer />
-          </LazyOnScroll>
-          <motion.div 
-            className={styles.virtualAura}
-            animate={{ opacity: [0.15, 0.25, 0.15] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </motion.div>
-      </motion.section>
-      */}
- 
-
+      
       {/* Amenities Section with staggered grid animation */}
       <motion.section 
         className={styles.amenitiesSection}
