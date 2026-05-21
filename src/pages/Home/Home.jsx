@@ -7,7 +7,7 @@ import { MdWaterDrop, MdElectricBolt } from "react-icons/md";
 import { GiBrickWall, GiWaterRecycling, GiWaterfall } from "react-icons/gi";
 import layoutimg from '../../assets/layout1.jpg';
 import layoutimg2 from '../../assets/layout2.jpg';
-import layout11 from "../../assets/Sarswati Nagari 11.jpg.jpeg";
+
 import WhyChoose from "../Choose/Choose";
 import QualityWork from "../Qualitywork/QualityWork";
 import UpcomingProjects from "../UpcomingProject/UpcomingProject";
