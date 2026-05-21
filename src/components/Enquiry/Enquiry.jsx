@@ -3,6 +3,7 @@ import './EnquiryForm.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const EnquiryForm = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const { state } = useLocation();
   const projectName = state?.projectName;
   const selectedPlot = state?.selectedPlot;
@@ -62,7 +63,7 @@ const EnquiryForm = () => {
    
 
       // POST to API
-      const response = await fetch('https://api.sgroup.space/plot-enquiries/create', {
+      const response = await fetch(`${API_BASE_URL}/plot-enquiries/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

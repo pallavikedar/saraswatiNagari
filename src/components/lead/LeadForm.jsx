@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./LeadForm.module.css";
 
 const LeadForm = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [form, setForm] = useState({
     name: "", phone: "", area: "", time: "Morning", whatsappConsent: true,
   });
@@ -35,7 +36,7 @@ const LeadForm = () => {
       };
 
       // POST to API
-      const response = await fetch('https://api.sgroup.space/free-consultation', {
+      const response = await fetch(`${API_BASE_URL}/free-consultation`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
