@@ -46,7 +46,7 @@ const LeadForm = () => {
       // Handle response
       if (response.ok) {
         const result = await response.json();
-        console.log('API Success:', result);
+       
         setSubmitStatus('success');
         alert("Consultation scheduled successfully!");
         

@@ -59,7 +59,7 @@ const EnquiryForm = () => {
         preferredContactTime: formData.contactTime
       };
 
-      console.log('Sending API Data:', apiData);
+   
 
       // POST to API
       const response = await fetch('https://api.sgroup.space/plot-enquiries/create', {
@@ -73,7 +73,7 @@ const EnquiryForm = () => {
       // Handle response
       if (response.ok) {
         const result = await response.json();
-        console.log('API Success:', result);
+        
         setSubmitStatus('success');
         
         // Show success message
