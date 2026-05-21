@@ -267,3 +267,16 @@
   .radioRow { flex-wrap: wrap; }
   .radioPill { flex: 1 1 calc(50% - 0.25rem); }
 }
+
+
+.errorMsg {
+  color: #e53e3e;
+  font-size: 0.75rem;
+  margin-top: 4px;
+  display: block;
+}
+
+.inputError {
+  border-color: #e53e3e !important;
+  outline-color: #e53e3e;
+}

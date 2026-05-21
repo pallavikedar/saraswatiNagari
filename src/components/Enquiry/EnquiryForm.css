@@ -124,3 +124,16 @@
     font-size: 1.6rem;
   }
 }
+
+
+.error-msg {
+  color: #e53e3e;
+  font-size: 0.78rem;
+  margin-top: 4px;
+  display: block;
+}
+
+input.error,
+select.error {
+  border-color: #e53e3e;
+}
