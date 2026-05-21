@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import image from "../../assets/Sarswati Nagari 11.jpg.jpeg";
+
 
 // ─── Safari-safe global styles (Same as Map1 elegant design) ─────────────────
 const STYLES = `
@@ -1019,7 +1019,7 @@ const Map11 = () => {
                 }}
               >
                 <img
-                  src={image}
+                  src={import.meta.env.VITE_MAP_IMAGE_URL6}
                   alt="Plot Layout Map"
                   className="pm-map-img"
                 />

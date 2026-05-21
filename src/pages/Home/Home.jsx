@@ -245,7 +245,7 @@ const Home = () => {
     { id: 8,  layoutKey: t.layouts.sn8.name,  locationKey: t.layouts.sn8.location,  areaKey: t.layouts.sn8.area,  price: "₹2000", status: t.layouts.status.available, img:import.meta.env.VITE_MAP_IMAGE_URL5, nav: "our-layouts7" },
     { id: 9,  layoutKey: t.layouts.sn9.name,  locationKey: t.layouts.sn9.location,  areaKey: t.layouts.sn9.area,  price: "₹2250", status: t.layouts.status.available, img: layoutimg,  nav: "our-layouts8" },
     { id: 10, layoutKey: t.layouts.sn10.name, locationKey: t.layouts.sn10.location, areaKey: t.layouts.sn10.area, price: "₹2000", status: t.layouts.status.sold,      img: layoutimg2, nav: "our-layouts9" },
-    { id: 11, layoutKey: t.layouts.sn11.name, locationKey: t.layouts.sn11.location, areaKey: t.layouts.sn11.area, price: "₹2450", status: t.layouts.status.sold,      img: layout11,   nav: "our-layouts10" },
+    { id: 11, layoutKey: t.layouts.sn11.name, locationKey: t.layouts.sn11.location, areaKey: t.layouts.sn11.area, price: "₹2450", status: t.layouts.status.sold,      img:import.meta.env.VITE_MAP_IMAGE_URL6,   nav: "our-layouts10" },
   ];
 
   // Hero slide auto-advance
