@@ -48,8 +48,7 @@ if (typeof window !== "undefined") {
   });
 }
 
-const VIDEO_URL =
-  "https://firebasestorage.googleapis.com/v0/b/abhi-9bd8f.firebasestorage.app/o/saraswati%20nagri%208%20(1)%20(1)%20(1).mp4?alt=media&token=aa64d50d-bcef-4a0b-9d92-6a6585394242";
+const VIDEO_URL = import.meta.env.VITE_MAP_video_URL1;
 
 const HERO_POSTER = "../assets/Sarswati Nagari 11.jpg.jpeg";
 
@@ -237,13 +236,13 @@ const Home = () => {
 
   const tableData = [
     { id: 1,  layoutKey: t.layouts.sn1.name,  locationKey: t.layouts.sn1.location,  areaKey: t.layouts.sn1.area,  price: "₹3000", status: t.layouts.status.sold,      img: layouts1,   nav: "our-layouts",  priority: true },
-    { id: 2,  layoutKey: t.layouts.sn2.name,  locationKey: t.layouts.sn2.location,  areaKey: t.layouts.sn2.area,  price: "₹3000", status: t.layouts.status.sold,      img: "https://firebasestorage.googleapis.com/v0/b/abhi-9bd8f.firebasestorage.app/o/SARASWATI%20NAGRI%202%20(1).jpg?alt=media&token=8de92aab-be4f-4100-8956-a8655cf299a8", nav: "our-layouts1" },
-    { id: 3,  layoutKey: t.layouts.sn3.name,  locationKey: t.layouts.sn3.location,  areaKey: t.layouts.sn3.area,  price: "₹3000", status: t.layouts.status.available, img: "https://firebasestorage.googleapis.com/v0/b/abhi-9bd8f.firebasestorage.app/o/SARASWATI%20NAGRI%203%20(1).jpg?alt=media&token=e4ca4d02-449e-4a9c-ae35-2e171fa54bbb", nav: "our-layouts2" },
-    { id: 4,  layoutKey: t.layouts.sn4.name,  locationKey: t.layouts.sn4.location,  areaKey: t.layouts.sn4.area,  price: "₹3000", status: t.layouts.status.available, img: "https://firebasestorage.googleapis.com/v0/b/abhi-9bd8f.firebasestorage.app/o/SATASWATI%20NAGRI%204%20(1).jpg?alt=media&token=4e31ec32-e733-4639-98f7-d66eb7a0a40e", nav: "our-layouts3" },
-    { id: 5,  layoutKey: t.layouts.sn5.name,  locationKey: t.layouts.sn5.location,  areaKey: t.layouts.sn5.area,  price: "₹3000", status: t.layouts.status.available, img: "https://firebasestorage.googleapis.com/v0/b/abhi-9bd8f.firebasestorage.app/o/SARASWATI%20NAGRI%205%20(1).jpg?alt=media&token=c556b5a4-ffde-4b3f-b257-ec77f63f7fcc", nav: "our-layouts4" },
+    { id: 2,  layoutKey: t.layouts.sn2.name,  locationKey: t.layouts.sn2.location,  areaKey: t.layouts.sn2.area,  price: "₹3000", status: t.layouts.status.sold,      img:import.meta.env.VITE_MAP_IMAGE_URL, nav: "our-layouts1" },
+    { id: 3,  layoutKey: t.layouts.sn3.name,  locationKey: t.layouts.sn3.location,  areaKey: t.layouts.sn3.area,  price: "₹3000", status: t.layouts.status.available, img:import.meta.env.VITE_MAP_IMAGE_URL1, nav: "our-layouts2" },
+    { id: 4,  layoutKey: t.layouts.sn4.name,  locationKey: t.layouts.sn4.location,  areaKey: t.layouts.sn4.area,  price: "₹3000", status: t.layouts.status.available, img: import.meta.env.VITE_MAP_IMAGE_URL2, nav: "our-layouts3" },
+    { id: 5,  layoutKey: t.layouts.sn5.name,  locationKey: t.layouts.sn5.location,  areaKey: t.layouts.sn5.area,  price: "₹3000", status: t.layouts.status.available, img: import.meta.env.VITE_MAP_IMAGE_URL3, nav: "our-layouts4" },
     { id: 6,  layoutKey: t.layouts.sn6.name,  locationKey: t.layouts.sn6.location,  areaKey: t.layouts.sn6.area,  price: "₹2000", status: t.layouts.status.available, img: layout6,    nav: "our-layouts5" },
-    { id: 7,  layoutKey: t.layouts.sn7.name,  locationKey: t.layouts.sn7.location,  areaKey: t.layouts.sn7.area,  price: "₹2000", status: t.layouts.status.sold,      img: "https://firebasestorage.googleapis.com/v0/b/abhi-9bd8f.firebasestorage.app/o/8_1%20-%20Photo_21%20-%20Photo%20(1).jpg?alt=media&token=1b6f6b9b-3028-49ff-9e9c-7f2082704fe2", nav: "our-layouts6" },
-    { id: 8,  layoutKey: t.layouts.sn8.name,  locationKey: t.layouts.sn8.location,  areaKey: t.layouts.sn8.area,  price: "₹2000", status: t.layouts.status.available, img: "https://firebasestorage.googleapis.com/v0/b/abhi-9bd8f.firebasestorage.app/o/saraswati%20nagri%208_2%20-%20Photo%20(1).jpg?alt=media&token=21298f0a-4e8e-41b1-9658-f109f0b32c1f", nav: "our-layouts7" },
+    { id: 7,  layoutKey: t.layouts.sn7.name,  locationKey: t.layouts.sn7.location,  areaKey: t.layouts.sn7.area,  price: "₹2000", status: t.layouts.status.sold,      img:import.meta.env.VITE_MAP_IMAGE_URL4, nav: "our-layouts6" },
+    { id: 8,  layoutKey: t.layouts.sn8.name,  locationKey: t.layouts.sn8.location,  areaKey: t.layouts.sn8.area,  price: "₹2000", status: t.layouts.status.available, img:import.meta.env.VITE_MAP_IMAGE_URL5, nav: "our-layouts7" },
     { id: 9,  layoutKey: t.layouts.sn9.name,  locationKey: t.layouts.sn9.location,  areaKey: t.layouts.sn9.area,  price: "₹2250", status: t.layouts.status.available, img: layoutimg,  nav: "our-layouts8" },
     { id: 10, layoutKey: t.layouts.sn10.name, locationKey: t.layouts.sn10.location, areaKey: t.layouts.sn10.area, price: "₹2000", status: t.layouts.status.sold,      img: layoutimg2, nav: "our-layouts9" },
     { id: 11, layoutKey: t.layouts.sn11.name, locationKey: t.layouts.sn11.location, areaKey: t.layouts.sn11.area, price: "₹2450", status: t.layouts.status.sold,      img: layout11,   nav: "our-layouts10" },
@@ -423,10 +422,10 @@ const Home = () => {
               muted
               playsInline
               preload="metadata"
-              poster="https://firebasestorage.googleapis.com/v0/b/abhi-9bd8f.firebasestorage.app/o/SARASWATI%20NAGRI%203%20(1).jpg?alt=media&token=e4ca4d02-449e-4a9c-ae35-2e171fa54bbb"
+              poster={import.meta.env.VITE_MAP_IMAGE_URL1}
               className={styles.amenitiesVideo}
             >
-              <source src={VIDEO_URL} type="video/mp4" />
+              <source src={import.meta.env.VITE_MAP_video_URL} type="video/mp4" />
             </video>
             
            <motion.div

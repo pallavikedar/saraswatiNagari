@@ -857,7 +857,7 @@ const Map1 = () => {
                 }}
               >
                 <img
-                  src="https://firebasestorage.googleapis.com/v0/b/abhi-9bd8f.firebasestorage.app/o/SARASWATI%20NAGRI%202%20(1).jpg?alt=media&token=8de92aab-be4f-4100-8956-a8655cf299a8"
+                  src={import.meta.env.VITE_MAP_IMAGE_URL}
                   alt="Plot Layout Map"
                   className="pm-map-img"
                 />

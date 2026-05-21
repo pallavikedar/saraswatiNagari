@@ -62,8 +62,8 @@ const Layout2 = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
 
-  const videoUrl = "https://fra.cloud.appwrite.io/v1/storage/buckets/69410e4f002f12a6a22b/files/694545f7002f42f5f8a5/view?project=69410e2700329697a6d1&mode=all";
-const image= "https://firebasestorage.googleapis.com/v0/b/abhi-9bd8f.firebasestorage.app/o/SARASWATI%20NAGRI%203%20(1).jpg?alt=media&token=e4ca4d02-449e-4a9c-ae35-2e171fa54bbb";
+
+const image= import.meta.env.VITE_MAP_IMAGE_URL1;
   const amenitiesList = [
     { icon: <FaRoad />, title: "Cement Roads" },
     { icon: <GiWaterfall />, title: "Sewer Lines" },

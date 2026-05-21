@@ -72,7 +72,7 @@ const Layout10 = () => {
     return () => clearTimeout(t);
   }, []);
 
-  const videoUrl = "https://fra.cloud.appwrite.io/v1/storage/buckets/68ece1ef00083478df97/files/69425efd002e2614a2d2/view?project=68ece1d1000abe9952c0&mode=all";
+  
 
   const amenitiesList = [
     { icon: <FaRoad />, title: "Cement Roads" },

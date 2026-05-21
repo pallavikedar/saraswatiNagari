@@ -61,7 +61,7 @@ const Layout1 = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
 
-  const image = "https://firebasestorage.googleapis.com/v0/b/abhi-9bd8f.firebasestorage.app/o/SARASWATI%20NAGRI%202%20(1).jpg?alt=media&token=8de92aab-be4f-4100-8956-a8655cf299a8";
+  const image = import.meta.env.VITE_MAP_IMAGE_URL;
 
   const amenitiesList = [
     { icon: <FaRoad />, title: "Cement Roads" },

@@ -61,7 +61,7 @@ const Layout6 = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
 
-  const videoUrl = "https://firebasestorage.googleapis.com/v0/b/abhi-9bd8f.firebasestorage.app/o/8_1%20-%20Photo_21%20-%20Photo%20(1).jpg?alt=media&token=1b6f6b9b-3028-49ff-9e9c-7f2082704fe2";
+  const videoUrl = import.meta.env.VITE_MAP_video_URL;
 
   const amenitiesList = [
     { icon: <FaRoad />, title: "Cement Roads" },
@@ -74,7 +74,7 @@ const Layout6 = () => {
     { icon: <FaWalking />, title: "Walking Tracks" },
     { icon: <GiWaterRecycling />, title: "Sewage Treatment Plants (STP)" },
   ];
-const image = "https://fra.cloud.appwrite.io/v1/storage/buckets/69410e4f002f12a6a22b/files/69451fc0002fb8b3ef54/view?project=69410e2700329697a6d1&mode=all";
+
   // Professional animation variants
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },

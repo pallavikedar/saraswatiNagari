@@ -1,5 +1,4 @@
-// import { useState } from 'react'
-// import './App.css'
+
 
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -23,6 +22,7 @@ import Layout8 from './pages/Layouts/Layout8';
 import Layout9 from './pages/Layouts/Layout9';
 import Layout10 from './pages/Layouts/Layout10';
 import EnquiryForm from './components/Enquiry/Enquiry';
+import NotFound from './components/NotFound';
 
 
 const App = () => {
@@ -41,7 +41,7 @@ const App = () => {
           <Route path="our-layouts5" element={<Layout5 />} />
           <Route path="our-layouts6" element={<Layout6 />} />
           <Route path="our-layouts7" element={<Layout7 />} />
-          <Route path="our-layouts7" element={<Layout7 />} />
+        
           <Route path="our-layouts8" element={<Layout8 />} />
           <Route path="our-layouts9" element={<Layout9 />} />
           <Route path="our-layouts10" element={<Layout10 />} />
@@ -51,10 +51,10 @@ const App = () => {
           <Route path="map" element={<Map />} />
           <Route path="/enquiry" element={<EnquiryForm />} />
           
-
+ <Route path="*"       element={<NotFound />} />
           
         </Route>
-         {/* <Route path="/enquiry" element={<EnquiryForm />} /> */}
+        
       </Routes>
     </BrowserRouter>
   );

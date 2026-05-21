@@ -928,7 +928,7 @@ const Map7 = () => {
               >
                 <img
                   ref={imageRef}
-                  src="https://firebasestorage.googleapis.com/v0/b/abhi-9bd8f.firebasestorage.app/o/8_1%20-%20Photo_21%20-%20Photo%20(1).jpg?alt=media&token=1b6f6b9b-3028-49ff-9e9c-7f2082704fe2"
+                  src={import.meta.env.VITE_MAP_IMAGE_URL4}
                   alt="Plot Layout Map"
                   className="pm-map-img"
                 />
